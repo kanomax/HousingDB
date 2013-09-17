@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130410225928) do
-
+ActiveRecord::Schema.define(:version => 0) do
   
   create_table "agents", :force => true do |t|
     t.string   "name"
@@ -57,7 +56,7 @@ ActiveRecord::Schema.define(:version => 20130410225928) do
   end
 
   create_table "listings", :force => true do |t|
-    t.integer   "listingprice"
+    t.string   "listingprice"
     t.date     "listingdate"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
