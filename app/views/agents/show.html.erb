@@ -1,0 +1,24 @@
+<h2><%= @agent.name %></h2>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <br \>
+  <b>Company's Name:</b>
+  <%= @agent.companyname %><br \>
+  <b>Agent's Address:</b>
+  <%= @agent.address %><br \>
+  <b>Agent's Phone Number:</b>
+  <%= @agent.phone %><br \>
+  <b>Agent's Email:</b>
+  <%= @agent.email %><br \>
+  
+  
+  
+  
+</p>
+
+
+<%= link_to 'Edit Agent', edit_house_path(@agent) %> | 
+<%= link_to 'Delete Agent', @agent, confirm: 'Are you sure?', method: :delete %> <br \>
+
+<%= link_to 'Back', houses_path %>

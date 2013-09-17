@@ -1,0 +1,25 @@
+<h1>Listing Information</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@search, :name, "Agent Name") %></th>
+      <th><%= sort_link(@search, :companyname, "Company Name") %></th>
+      <th><%= sort_link(@search, :address, "Agent's Address") %></th>
+      <th><%= sort_link(@search, :phone, "Agent's Phone Number") %></th>
+      <th><%= sort_link(@search, :email, "Agent's Email") %></th>
+ </tr>
+  </thead>
+  <tbody>
+  	
+<% @agents.each do |agent| %>
+<tr>
+    	<td><%= agent.name %></td>
+    	<td><%= agent.companyname %></td>
+    	<td><%= agent.address %></td>
+    	<td><%= agent.phone %></td>
+    	<td><%= agent.email %></td>
+
+</tr>
+<% end %>
+</tbody>
+</table>

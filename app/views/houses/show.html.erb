@@ -1,0 +1,68 @@
+<h2><%= @house.address %> <%= @house.city %>, <%= @house.state%> <%= @house.zipcode %></h2>
+
+<p>
+  <br \>
+    <b>County:</b>
+  <%= @house.county %><br \>
+      <b>Status:</b>
+  <%= @house.status %><br \>
+       <b>Price:</b>
+  <%= @house.currentprice %><br \>
+  <b>Lot Size:</b>
+  <%= @house.lotsize %><br \>
+  <b>Square Feet:</b>
+  <%= @house.squarefeet %><br \>
+  <b>Bedrooms:</b>
+  <%= @house.bedrooms %><br \>
+  <b>Bathrooms:</b>
+  <%= @house.bathrooms %><br \>
+  <b>Style:</b>
+  <%= @house.style %><br \>
+  <b>Year Build:</b>
+  <%= @house.year %><br \>
+  <b>Basement Square Footage:</b>
+  <%= @house.basementsf %><br \>
+<b>Basement Square Footage (Finish):</b>
+  <%= @house.basementsffinish %><br \>
+  <b>Basement Bedrooms:</b>
+  <%= @house.basementbd %><br \>
+  <b>Basement Bathrooms:</b>
+  <%= @house.basementbath %><br \>
+  <b>Basement Other:</b>
+  <%= @house.basementother %><br \>
+  <b>Garage Stalls:</b>
+  <%= @house.garagestalls %><br \>
+<b>Fireplaces:</b>
+  <%= @house.fireplaces %><br \>
+<b>Wood Stoves:</b>
+  <%= @house.woodstoves %><br \>
+<b>Heating:</b>
+  <%= @house.heating %><br \>
+<b>Cooling:</b>
+  <%= @house.cooling %><br \>
+  <b>Siding:</b>
+  <%= @house.siding %><br \>
+  <b>Out Buildings:</b>
+  <%= @house.outbuilding %><br \>
+  <b>General Comment:</b>
+  <%= @house.gencomments %><br \>
+  
+  
+  
+</p>
+
+
+<%= link_to 'Edit House', edit_house_path(@house) %> | 
+<%= link_to 'Delete House', @house, confirm: 'Are you sure?', method: :delete %> <br \>
+
+<%= link_to 'Show Listing Information', house_listings_path(@house) %> |
+<%= link_to 'Add Listing Information', new_house_listing_path(@house) %> <br \>
+
+<%= link_to 'Show Sales Information', house_sales_path(@house) %> |
+<%= link_to 'Add Sales Information', new_house_sale_path(@house) %> <br \><br \><br \>
+
+
+<%= link_to "Change Status of House", statusupdate_house_path %><br \><br \>
+
+<%= link_to 'Back', :back %>
+

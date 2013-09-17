@@ -1,0 +1,12 @@
+<%= simple_form_for([@house, @listing]) do |f| %>  
+
+<%= f.error_notification %>
+
+  <div class="form-actions">
+    <%= f.input :listingprice, label: "Listing Price", :min => 0 %><br /><br />
+    <%= f.input :listingdate, label: "Listing Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true%><br /><br />
+    
+
+    <%= f.button :submit, "Create Listing Information", :class => "btn-primary" %>
+  </div>
+<% end %>

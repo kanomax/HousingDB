@@ -1,0 +1,60 @@
+<table>
+<% @houses.each do |house| %>
+<td>
+<h5><%= house.address %> <%= house.city %>, <%= house.state%> <%= house.zipcode %></h5>
+
+<p>
+  <br \>
+    <b>County:</b>
+  <%= house.county %><br \>
+      <b>Status:</b>
+  <%= house.status %><br \>
+       <b>Price:</b>
+  <%= house.currentprice %><br \>
+  <b>Lot Size:</b>
+  <%= house.lotsize %><br \>
+  <b>Square Feet:</b>
+  <%= house.squarefeet %><br \>
+  <b>Bedrooms:</b>
+  <%= house.bedrooms %><br \>
+  <b>Bathrooms:</b>
+  <%= house.bathrooms %><br \>
+  <b>Style:</b>
+  <%= house.style %><br \>
+  <b>Year Build:</b>
+  <%= house.year %><br \>
+  <b>Basement Square Footage:</b>
+  <%= house.basementsf %><br \>
+<b>Basement Square Footage (Finish):</b>
+  <%= house.basementsffinish %><br \>
+  <b>Basement Bedrooms:</b>
+  <%= house.basementbd %><br \>
+  <b>Basement Bathrooms:</b>
+  <%= house.basementbath %><br \>
+  <b>Basement Other:</b>
+  <%= house.basementother %><br \>
+  <b>Garage Stalls:</b>
+  <%= house.garagestalls %><br \>
+<b>Fireplaces:</b>
+  <%= house.fireplaces %><br \>
+<b>Wood Stoves:</b>
+  <%= house.woodstoves %><br \>
+<b>Heating:</b>
+  <%= house.heating %><br \>
+<b>Cooling:</b>
+  <%= house.cooling %><br \>
+  <b>Siding:</b>
+  <%= house.siding %><br \>
+  <b>Out Buildings:</b>
+  <%= house.outbuilding %><br \>
+  <b>General Comment:</b>
+  <%= house.gencomments %><br \>
+  
+  
+  
+</p>
+</td>
+<% end %>
+</table>
+<%= link_to 'Back', :back %>
+

@@ -1,0 +1,16 @@
+<%= simple_form_for(@agent) do |f| %>  
+
+<%= f.error_notification %>
+
+  <div class="form-class">
+    <%= f.input :name, label: "Agent's Name" %><br /><br />
+    <%= f.input :companyname, label:"Company's Name" %><br /><br />
+    <%= f.input :address, label: "Agent's Address" %><br /><br />
+    <%= f.input :phone, label: "Agent's Phone Number" %><br /><br />
+    <%= f.input :email, label: "Agent's Email" %><br /><br />
+
+    
+
+    <%= f.button :submit, "Submit", :class => "btn-primary" %>
+  </div>
+<% end %>

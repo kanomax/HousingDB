@@ -1,0 +1,19 @@
+<h1>Listing Information</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@search, :listingdate, "Listing Date") %></th>
+      <th><%= sort_link(@search, :listingprice, "Listing Price") %></th>
+ </tr>
+  </thead>
+  <tbody>
+  	
+<% @listings.each do |list| %>
+<tr>
+    	<td><%= list.listingdate.strftime("%m/%d/%Y") %></td>
+    	<td><%= number_to_currency(list.listingprice) %></td>
+
+</tr>
+<% end %>
+</tbody>
+</table>

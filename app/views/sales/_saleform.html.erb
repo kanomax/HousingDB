@@ -1,0 +1,16 @@
+<%= simple_form_for([@house, @sale],) do |f| %>  
+
+<%= f.error_notification %>
+
+
+  <div class="form-actions">
+    <%= f.input :price, as: :string, label: "Sale Price", :min => 0 %><br /><br />
+    <%= f.input :saledate, label: "Sale Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true %><br /><br />
+    <%= f.input :contractprice, label: "Contract Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true %><br /><br />
+    <%= f.input :concession, as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
+    <%= f.input :specialterms, label: "Special Terms", as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
+  	
+
+    <%= f.button :submit, "Create Sale Information", :class => "btn-primary" %>
+  </div>
+<% end %>

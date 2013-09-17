@@ -1,0 +1,24 @@
+<h1>Sales Information</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@search, :saledate, "Sale Date") %></th>
+      <th><%= sort_link(@search, :price, "Sale Price") %></th>
+      <th><%= sort_link(@search, :contractprice, "Date of Contract") %></th>
+      <th>Seller Concession</th>
+      <th>Special Terms</th>
+      </tr>
+      </thead>
+  <tbody>
+<% @sales.each do |sale| %>
+	<tr>
+		<th><%= sale.saledate.strftime("%m/%d/%Y") %></th>
+    	<th><%= number_to_currency(sale.price) %></th>
+    	<th><%= sale.contractprice.try(:strftime,"%m/%d/%Y") %></th>
+    	<th><%= sale.concession %></th>
+    	<th><%= sale.specialterms %></th>
+
+  </tr>
+<% end %>
+</tbody>
+</table>

@@ -1,0 +1,55 @@
+<%= simple_form_for(@house, :html => {:novalidate => true})  do |f| %>
+
+
+  
+  <div class="container-fluid">
+  	<%= f.error_notification %>
+ 	<div class="row-fluid"> 	
+  		<div class="span6">
+  			<div class="form-inputs">
+
+    	<%= f.input :address%><br /><br />
+    	<%= f.input :city %><br /><br />
+    	<%= f.input :state %><br /><br />
+    	<%= f.input :zipcode, as: :string %><br /><br />
+    	<%= f.input :county %><br /><br />
+    	<%= f.input :lotsize, label: "Lot Size", as: :string %><br /><br />
+    	<%= f.input :squarefeet, label: "Square Feet", as: :string %><br /><br />
+    	<%= f.input :bedrooms, as: :string %><br /><br />
+    	<%= f.input :bathrooms, as: :string %><br /><br />
+	    <%= f.input :basementsf, label: "Basement Square Foot", as: :string %><br /><br />
+	    <%= f.input :basementsffinish, label: "Basement Square Fott (Finish)", as: :string %><br /><br />
+</div>
+    	
+    	</div>
+	    <div class="span6">
+	    <%= f.input :style, collection: [['One Story'],['One 1/2 Story'], ['Two Story'],['Split Level']], :class =>'btn-large', include_blank: false %><br /><br />
+	    <%= f.input :year, label: "Year Built", as: :string %><br /><br />
+	    <%= f.input :garagestalls, label: "Garage Stalls", collection: (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :fireplaces, collection: (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :woodstoves, label: "Wood Stoves", collection: (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :heating, collection: [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"]], :include_blank => true, :class =>'btn-large'%><br /><br />
+	    <%= f.input :cooling, collection: [["CA"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :siding, collection: [["None"],["Wood"], ["Hardboard"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :basementbd, label: "Basement Bedroom", collection: (0..4), :include_blank => true, :class =>'btn-large'%><br /><br />
+	    <%= f.input :basementbath, label: "Basement Bathroom", collection: (0..4), :include_blank => true, :class =>'btn-large'%><br /><br />
+	    </div>
+</div>
+	    <%= f.label :basementother, "Basement Other", :class => "span3 offset3" %><br />
+	    <%= f.text_area :basementother, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :outbuilding, "Out Buildings", :class => "span3 offset3" %><br />
+	    <%= f.text_area :outbuilding, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :gencomments, "General Comments", :class => "span3 offset3" %><br />
+	    <%= f.text_area :gencomments, :rows => 10, :class => "span9" %><br /><br />
+	    
+	    
+	    </div>
+	    <div class="form-actions">
+	    <div class="container-fluid">  
+	     <div class="span3 offset3">
+  		<%= f.button :submit, :class => "btn btn-primary" %>
+  		<%= link_to "Cancel", :back, :class => "btn btn-danger" %>
+  		</div>
+    </div>
+  </div>
+<% end %>
