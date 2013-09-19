@@ -23,14 +23,16 @@
     <%= f.text_field :county_cont %><br /><br />
     
     <%= f.label :style_eq, "Style", :class => 'label'%><br />
-    <%= f.select :style_eq, [["One Story"],["One 1/2 Story"], ["Two Story"], ["Split Story"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
+    <%= f.select :style_eq, [["One Story"],["1.5 Story"], ["Two Story"], ["Three Story"], ["Split Story"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
+    
+    <%= f.label :garagestalls_eq, "Garage Stalls", :class => 'label' %><br />
+    <%= f.select :garagestalls_eq, [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br /> 
+    
+   <%= f.check_box :concretedrive_eq, :as => :boolean%><%= f.label :concretedrive, "Concrete Drive", :class => 'label'%><br />
    
     </div>
     <div class="span6">
-
-     <%= f.label :garagestalls_eq, "Garage Stalls", :class => 'label' %><br />
-    <%= f.select :garagestalls_eq, (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
-       
+      
     <%= f.label :fireplaces_eq, "Fireplaces", :class => 'label' %><br />
     <%= f.select :fireplaces_eq, (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
     
@@ -38,33 +40,41 @@
     <%= f.select :woodstoves_eq, (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
     
     <%= f.label :heating_eq, "Heating", :class => 'label'%><br />
-    <%= f.select :heating_eq, [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
+    <%= f.select :heating_eq, [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
    
    <%= f.label :cooling_eq, "Cooling", :class => 'label'%><br />
-   <%= f.select :cooling_eq, [["CA"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"]], :include_blank => 'All', :class =>'btn-large'%><br /><br /> 
+   <%= f.select :cooling_eq, [["CA"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br /> 
    
     <%= f.label :siding_eq, "Siding", :class => 'label'%><br />
-   <%= f.select :siding_eq, [["None"],["Wood"], ["Hardwood"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />   
+   <%= f.select :siding_eq, [["None"],["Wood"], ["Hardwood"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"], ["Cement Board"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />  
+   
+   <%= f.label :condtion_eq, "Condition", :class => 'label'%><br />
+   <%= f.select :condition_eq, [["C1"],["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />    
+   
+   <%= f.label :condtion_eq, "Quality", :class => 'label'%><br />
+   <%= f.select :condition_eq, [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />  
+   
+   <%= f.check_box :sprinklers_eq, :as => :boolean%><%= f.label :sprinklers, "Underground Sprinklers", :class => 'label'%><br />  
     </div>
     </div>
        
   <div class="span6 offset1">  
-    <%= f.label :lotsize_gteq, "Lot Size Range", :class => 'label' %><br />
+    <%= f.label :lotsize_gteq, "Lot Size (Sq. Ft.) Range", :class => 'label' %><br />
     <%= f.text_field :lotsize_gteq %>
     <%= f.label :lotsize_lteq, "through", :class => 'label label-info' %>
     <%= f.text_field :lotsize_lteq %>  <br /><br />
     
-    <%= f.label :squarefeet_gteq, "Square Feet Range", :class => 'label' %><br />
+    <%= f.label :squarefeet_gteq, "Total GLA (Sq. Ft.) Range", :class => 'label' %><br />
     <%= f.text_field :squarefeet_gteq %>
     <%= f.label :squarefeet_lteq, "through", :class => 'label label-info' %>
     <%= f.text_field :squarefeet_lteq %>  <br /><br />
     
-    <%= f.label :bedrooms_gteq, "Bedrooms Range", :class => 'label' %><br />
+    <%= f.label :bedrooms_gteq, "Bedrooms (Above Grade) Range", :class => 'label' %><br />
     <%= f.text_field :bedrooms_gteq %>
     <%= f.label :bedrooms_lteq, "through", :class => 'label label-info' %>
     <%= f.text_field :bedrooms_lteq %>  <br /><br />
     
-    <%= f.label :bathrooms_gteq, "Bathrooms Range", :class => 'label' %><br />
+    <%= f.label :bathrooms_gteq, "Bathrooms (Above Grade) - UAD Range", :class => 'label' %><br />
     <%= f.text_field :bathrooms_gteq %>
     <%= f.label :bathrooms_lteq, "through", :class => 'label label-info' %>
     <%= f.text_field :bathrooms_lteq %>  <br /><br />
@@ -90,7 +100,7 @@
     <%= f.label :basementbd_lteq, "through", :class => 'label label-info' %>
     <%= f.select :basementbd_lteq, (0..4), :include_blank => true, :class =>'btn-large'%>  <br /><br />       
     
-    <%= f.label :basementbath_gteq, "Basement Bathroom Range", :class => 'label' %><br />
+    <%= f.label :basementbath_gteq, "Basement Bathroom - UAD Range", :class => 'label' %><br />
     <%= f.select :basementbath_gteq, (0..4), :include_blank => true, :class =>'btn-large'%>
     <%= f.label :basementbath_lteq, "through", :class => 'label label-info' %>
     <%= f.select :basementbath_lteq, (0..4), :include_blank => true, :class =>'btn-large'%>  <br /><br />   

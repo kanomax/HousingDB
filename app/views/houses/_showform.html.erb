@@ -1,5 +1,3 @@
-<h2><%= @house.address %> <%= @house.city %>, <%= @house.state%> <%= @house.zipcode %></h2>
-
 <p>
   <br \>
     <b>County:</b>
@@ -58,21 +56,3 @@
   <%= @house.gencomments %><br \><br \>
 
   
-  
-</p>
-
-
-<%= link_to 'Edit House', edit_house_path(@house) %> | 
-<%= link_to 'Delete House', @house, confirm: 'Are you sure?', method: :delete %> <br \>
-
-<%= link_to 'Show Listing Information', house_listings_path(@house) %> |
-<%= link_to 'Add Listing Information', new_house_listing_path(@house) %> <br \>
-
-<%= link_to 'Show Sales Information', house_sales_path(@house) %> |
-<%= link_to 'Add Sales Information', new_house_sale_path(@house) %> <br \><br \><br \>
-
-
-<%= link_to "Change Status of House", statusupdate_house_path %><br \><br \>
-
-<%= link_to 'Back', :back %>
-

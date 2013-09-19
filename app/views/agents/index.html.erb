@@ -1,11 +1,12 @@
-<h1>Listing Information</h1>
+<h1>Agent Information</h1>
 <table class="table table-striped">
   <thead>
     <tr>
       <th><%= sort_link(@search, :name, "Agent Name") %></th>
       <th><%= sort_link(@search, :companyname, "Company Name") %></th>
       <th><%= sort_link(@search, :address, "Agent's Address") %></th>
-      <th><%= sort_link(@search, :phone, "Agent's Phone Number") %></th>
+      <th><%= sort_link(@search, :phone, "Agent's Office Phone Number") %></th>
+      <th><%= sort_link(@search, :cellphone, "Agent's Cell Phone Number") %></th>
       <th><%= sort_link(@search, :email, "Agent's Email") %></th>
  </tr>
   </thead>
@@ -17,9 +18,15 @@
     	<td><%= agent.companyname %></td>
     	<td><%= agent.address %></td>
     	<td><%= agent.phone %></td>
+    	<td><%= agent.cellphone %></td>
     	<td><%= agent.email %></td>
-
+   	<td>
+    	<%= link_to 'Show', agent, :class => 'btn btn-mini btn-primary' %>
+    	<%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-mini' %>
+    	<%= link_to 'Destroy', agent, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+  	</td>
 </tr>
 <% end %>
 </tbody>
 </table>
+<%= link_to 'Back to Home', root_path, :class => 'btn btn-inverse' %>

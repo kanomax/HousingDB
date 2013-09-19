@@ -7,7 +7,7 @@ HousingDB::Application.routes.draw do
     get "houses/viewall"
     get "houses/searchresults"
     get "houses/search"
-
+    
   resources :houses do
     resources :listings
     resources :sales
@@ -16,6 +16,10 @@ HousingDB::Application.routes.draw do
   end
 root to: 'houses#index'
   resources :agents
+   resources :sales do 
+         resources :agents
+   get'agentadd', :on => :member
+    end
 
 
   # The priority is based upon order of creation:

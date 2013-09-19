@@ -10,7 +10,9 @@
     <%= f.input :concession, as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
     <%= f.input :specialterms, label: "Special Terms", as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
   	
-
-    <%= f.button :submit, "Create Sale Information", :class => "btn-primary" %>
+	<%= f.button :submit, "Save and Add Agent", :name => "agentsubmit", :class => "btn-primary" %>
+    <%= f.button :submit, "Save Without Agent", :name => "submit", :class => "btn-primary" %>
+    
+    
   </div>
 <% end %>

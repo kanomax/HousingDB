@@ -5,8 +5,10 @@
       <th><%= sort_link(@search, :saledate, "Sale Date") %></th>
       <th><%= sort_link(@search, :price, "Sale Price") %></th>
       <th><%= sort_link(@search, :contractprice, "Date of Contract") %></th>
+      <th>Agent Name</th>
       <th>Seller Concession</th>
       <th>Special Terms</th>
+      
       </tr>
       </thead>
   <tbody>
@@ -15,6 +17,9 @@
 		<th><%= sale.saledate.strftime("%m/%d/%Y") %></th>
     	<th><%= number_to_currency(sale.price) %></th>
     	<th><%= sale.contractprice.try(:strftime,"%m/%d/%Y") %></th>
+    	<th><% unless sale.agent_id.nil? %>
+    		<%= Agent.find(sale.agent_id).name%>
+    		<% end %></th>
     	<th><%= sale.concession %></th>
     	<th><%= sale.specialterms %></th>
 
@@ -22,3 +27,4 @@
 <% end %>
 </tbody>
 </table>
+<%= link_to 'Back', :back%>

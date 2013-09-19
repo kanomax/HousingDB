@@ -11,8 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
-  
+ActiveRecord::Schema.define(:version => 20130919202948) do
+
   create_table "agents", :force => true do |t|
     t.string   "name"
     t.string   "companyname"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "email"
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
+    t.string   "cellphone"
   end
 
   create_table "houses", :force => true do |t|
@@ -41,8 +42,8 @@ ActiveRecord::Schema.define(:version => 0) do
     t.integer  "basementsffinish"
     t.integer  "basementbd"
     t.integer  "basementbath"
-    t.integer  "basementother"
-    t.integer  "garagestalls"
+    t.text     "basementother"
+    t.string   "garagestalls"
     t.string   "heating"
     t.string   "cooling"
     t.string   "siding"
@@ -53,6 +54,10 @@ ActiveRecord::Schema.define(:version => 0) do
     t.string   "gencomments"
     t.string   "status"
     t.integer  "currentprice"
+    t.string   "condition"
+    t.string   "quality"
+    t.boolean  "concretedrive"
+    t.boolean  "sprinklers"
   end
 
   create_table "listings", :force => true do |t|
