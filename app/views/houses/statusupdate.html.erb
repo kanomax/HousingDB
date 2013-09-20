@@ -3,7 +3,7 @@
 <%= f.error_notification %>
 
   			<div class="form-inputs">
-				<%= f.input :status, collection: [["Unknown"],["Listed"], ["Sold"]], :include_blank => false, :class =>'btn-large'%><br /><br /> 
+				<%= f.input :status, collection: [["Unknown"],["Listed"], ["Sold"], ["Pending"]], :include_blank => false, :class =>'btn-large'%><br /><br /> 
 
   		<%= f.button :submit, :class => "btn btn-primary" %>
   		<%= link_to "Cancel", :back, :class => "btn btn-danger" %>

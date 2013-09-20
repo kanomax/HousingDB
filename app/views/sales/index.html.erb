@@ -5,6 +5,7 @@
       <th><%= sort_link(@search, :saledate, "Sale Date") %></th>
       <th><%= sort_link(@search, :price, "Sale Price") %></th>
       <th><%= sort_link(@search, :contractprice, "Date of Contract") %></th>
+      <th><%= sort_link(@search, :dom, "Days on Market") %></th>
       <th>Agent Name</th>
       <th>Seller Concession</th>
       <th>Special Terms</th>
@@ -17,11 +18,16 @@
 		<th><%= sale.saledate.strftime("%m/%d/%Y") %></th>
     	<th><%= number_to_currency(sale.price) %></th>
     	<th><%= sale.contractprice.try(:strftime,"%m/%d/%Y") %></th>
+    	<th><%= sale.dom %></th>
     	<th><% unless sale.agent_id.nil? %>
     		<%= Agent.find(sale.agent_id).name%>
     		<% end %></th>
     	<th><%= sale.concession %></th>
     	<th><%= sale.specialterms %></th>
+    	<th>    	
+    	<%= link_to 'Edit', edit_sale_path(sale), :class => 'btn btn-mini' %>
+    	<%= link_to 'Destroy', sale, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+    	</th>
 
   </tr>
 <% end %>

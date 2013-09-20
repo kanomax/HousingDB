@@ -40,6 +40,10 @@ before_filter :get_house
 @sale = Sale.new
  end
  
+ def edit
+    @sale = Sale.find(params[:id])
+ end
+
  def index
       @search = @house.sales.search(params[:search])
        @sales = @search.result
@@ -55,12 +59,22 @@ before_filter :get_house
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
-        format.html { redirect_to root_path, notice: 'Agent was successfully added.' }
+        format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
         format.json { render json: @sale.errors, status: :unprocessable_entity }
       end
+    end
+  end
+  
+  def destroy
+    @sale = Sale.find(params[:id])
+    @sale.destroy
+
+    respond_to do |format|
+      format.html { redirect_to root_path }
+      format.json { head :no_content }
     end
   end
 end

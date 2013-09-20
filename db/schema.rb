@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130919202948) do
+ActiveRecord::Schema.define(:version => 20130920155739) do
 
   create_table "agents", :force => true do |t|
     t.string   "name"
@@ -26,22 +26,22 @@ ActiveRecord::Schema.define(:version => 20130919202948) do
 
   create_table "houses", :force => true do |t|
     t.string   "address"
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",                                     :null => false
+    t.datetime "updated_at",                                     :null => false
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
     t.string   "county"
     t.integer  "lotsize"
     t.integer  "squarefeet"
-    t.integer  "bedrooms"
+    t.decimal  "bedrooms",         :precision => 4, :scale => 2
     t.decimal  "bathrooms"
     t.string   "style"
     t.integer  "year"
     t.integer  "basementsf"
     t.integer  "basementsffinish"
-    t.integer  "basementbd"
-    t.integer  "basementbath"
+    t.decimal  "basementbd",       :precision => 4, :scale => 2
+    t.decimal  "basementbath",     :precision => 4, :scale => 2
     t.text     "basementother"
     t.string   "garagestalls"
     t.string   "heating"
@@ -49,8 +49,8 @@ ActiveRecord::Schema.define(:version => 20130919202948) do
     t.string   "siding"
     t.boolean  "replwindows"
     t.string   "outbuilding"
-    t.integer  "fireplaces"
-    t.integer  "woodstoves"
+    t.decimal  "fireplaces",       :precision => 4, :scale => 2
+    t.decimal  "woodstoves",       :precision => 4, :scale => 2
     t.string   "gencomments"
     t.string   "status"
     t.integer  "currentprice"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20130919202948) do
     t.datetime "updated_at",    :null => false
     t.integer  "house_id"
     t.integer  "agent_id"
+    t.integer  "dom"
   end
 
 end
