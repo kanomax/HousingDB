@@ -2,7 +2,9 @@ class ListingsController < ApplicationController
  before_filter :get_house
   
  def get_house
- @house = House.find(params[:house_id])
+  if params[:house_id] != nil
+   @house = House.find(params[:house_id])
+ end 
  end
  
  def show
@@ -12,18 +14,45 @@ class ListingsController < ApplicationController
  def create
  @listing = @house.listings.new(params[:listing])
   if @listing.save
-  flash[:notice] = "Listing Information was successfully added."
-  if @listing.listingdate > @house.sales.find(:first, :order => "saledate DESC").saledate
-    if @listing.listingdate >= @house.listings.find(:first, :order => "listingdate DESC").listingdate
+   if @listing.listingdate >= @house.listings.find(:first, :order => "listingdate DESC").listingdate
+    if @house.sales.find(:first, :order => "saledate DESC") == nil
+      @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
+    elsif @listing.listingdate > @house.sales.find(:first, :order => "saledate DESC").saledate
       @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
     end    
+   end
+   if params[:agentsubmit]
+    redirect_to agentadd_listing_path(@listing)
+  
+   else    
+    flash[:notice] = "Listing Information was successfully added."
+    redirect_to house_path(@house)
   end
-  redirect_to house_path(@house)
       else
  render action: "new"
   end
  end
  
+  def agentadd
+    @listing = Listing.find(params[:id])
+    @search = Agent.search(params[:q])
+    @agents = @search.result
+  end
+  
+    def update
+    @listing = Listing.find(params[:id])
+
+    respond_to do |format|
+      if @listing.update_attributes(params[:listing])
+        format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
+        format.json { head :no_content }
+      else
+        format.html { render action: "edit" }
+        format.json { render json: @sale.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+  
  def new 
 @listing = Listing.new
  end

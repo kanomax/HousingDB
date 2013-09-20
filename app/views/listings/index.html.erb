@@ -4,6 +4,7 @@
     <tr>
       <th><%= sort_link(@search, :listingdate, "Listing Date") %></th>
       <th><%= sort_link(@search, :listingprice, "Listing Price") %></th>
+      <th>Agent Name</th>
  </tr>
   </thead>
   <tbody>
@@ -12,6 +13,10 @@
 <tr>
     	<td><%= list.listingdate.strftime("%m/%d/%Y") %></td>
     	<td><%= number_to_currency(list.listingprice) %></td>
+    	<th><% unless list.agent_id.nil? %>
+    		<%= Agent.find(list.agent_id).name%>
+    		<% end %>
+    	</th>    	
 
 </tr>
 <% end %>

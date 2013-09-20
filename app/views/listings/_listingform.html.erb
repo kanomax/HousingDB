@@ -7,6 +7,7 @@
     <%= f.input :listingdate, label: "Listing Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true%><br /><br />
     
 
-    <%= f.button :submit, "Create Listing Information", :class => "btn-primary" %>
+    <%= f.button :submit, "Save and Add/Edit Agent", :name => "agentsubmit", :class => "btn-primary" %>
+    <%= f.button :submit, "Save Without Agent", :name => "submit", :class => "btn-primary" %>
   </div>
 <% end %>

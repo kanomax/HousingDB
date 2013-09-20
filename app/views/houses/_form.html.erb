@@ -25,14 +25,14 @@
     	
     	</div>
 	    <div class="span6">
-	    <%= f.input :style, collection: [['One Story'],['1.5 Story'], ['Two Story'],['Three Story'],['Split Level'],["Other"]], :class =>'btn-large', include_blank: false %><br /><br />
+	    <%= f.input :style, collection: [['One Story'],['1.5 Story'], ['Two Story'],['Three Story'],['Split Level'],["Other"]], :class =>'btn-large', include_blank: true %><br /><br />
 	    <%= f.input :year, label: "Year Built", as: :string %><br /><br />
-	    <%= f.input :garagestalls, label: "Garage Stalls", collection: [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :garagestalls, label: "Garage Stalls", collection: [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["2 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
 	    <%= f.input :fireplaces, as: :string %><br /><br /> 
 	    <%= f.input :woodstoves, label: "Wood Stoves", as: :string %><br /><br /> 
 	    <%= f.input :heating, collection: [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br />
-	    <%= f.input :cooling, collection: [["CA"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
-	    <%= f.input :siding, collection: [["None"],["Wood"], ["Hardboard"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"],["Cement Board"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br />
+	    <%= f.input :cooling, collection: [["C/A"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :siding, collection: [["None"],["Wood"], ["Hardboard"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"],["Cement Board"],["Stucco"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br />
 	    <%= f.input :condition, label: "Condtion", collection: [["C1"],["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
 	    <%= f.input :quality, label: "Quality", collection: [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
 	    <%= f.input :basementbd, label: "Basement Bedroom", as: :string %><br /><br />

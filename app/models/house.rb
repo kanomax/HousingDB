@@ -13,5 +13,4 @@ validates :zipcode, :format => { :with => %r{\d{5}(-\d{4})?} }
     self.status ||= 'Unknown'
   end
 
-  
 end
