@@ -1,10 +1,10 @@
 <%= simple_form_for([@house, @listing]) do |f| %>  
 
 <%= f.error_notification %>
-
+<br />
   <div class="form-actions">
     <%= f.input :listingprice, label: "Listing Price", :min => 0 %><br /><br />
-    <%= f.input :listingdate, label: "Listing Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true%><br /><br />
+    <%= f.input :listingdate, label: "Listing Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true, class: "form-control input-sm"%><br /><br />
     
 
     <%= f.button :submit, "Save and Add/Edit Agent", :name => "agentsubmit", :class => "btn-primary" %>

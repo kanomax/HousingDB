@@ -43,12 +43,12 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
 
     respond_to do |format|
-      if @listing.update_attributes(params[:listing])
+      if @listing.update_attributes(params[:listing]) and params[:param1] == nil
         format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "edit" }
-        format.json { render json: @sale.errors, status: :unprocessable_entity }
+        format.html { render action: "agentadd" }
+        format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -12,18 +12,18 @@
     <%= yield(:head) %>
   </head>
   <body>
-    <header class="navbar navbar-fixed-top">
-      <nav class="navbar-inner">
-        <div class="container-fluid">
+    <header class="navbar navbar-fixed-top navbar-default">
+      <nav class="navbar-header">
+        <div class="container">
           <%= render 'layouts/navigation' %>
         </div>
       </nav>
     </header>
     <div id="main" role="main">
-      <div class="container-fluid">
+      <div class="container">
         <div class="content">
-           <div class="row-fluid">
-            <div class="span12">
+           <div class="row">
+            <div class="col-lg-12">
               <%= render 'layouts/messages' %>
               <%= yield %>
             </div>

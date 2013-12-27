@@ -10,12 +10,7 @@
 // WARNING: THE FIRST BLANK LINE MARKS THE END OF WHAT'S TO BE PROCESSED, ANY BLANK LINE SHOULD
 // GO AFTER THE REQUIRES BELOW.
 //
+//= require bootstrap
 //= require jquery
 //= require jquery_ujs
-//= require jquery.validate
-//= require jquery.validate.additional-methods
-//= require bootstrap
 //= require_tree .
-
-
- 

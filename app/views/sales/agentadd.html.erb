@@ -1,10 +1,13 @@
 <%= simple_form_for(@sale, :html => {:novalidate => true}, :class => 'form-horizontal')  do |f| %>  
 
 <%= f.error_notification %>
+<h1>Select Agent</h1>
+<div class="form-actions">
 <div class="radio controls">
-  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name %>
+  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name %><br /><br />
   </div>
   
-<%= f.button :submit, "Add Agent" %>
 
+<%= f.button :submit, "Add Agent", class: "btn btn-primary" %>
+</div>
 <% end %>

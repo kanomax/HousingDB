@@ -21,7 +21,6 @@ group :assets do
 end
 
 gem 'simple_form'
-gem 'jquery-validation-rails'
 gem 'jquery-rails'
 gem "ransack"
 

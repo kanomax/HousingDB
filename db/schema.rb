@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130920155739) do
+ActiveRecord::Schema.define(:version => 20131211024659) do
 
   create_table "agents", :force => true do |t|
     t.string   "name"
@@ -58,6 +58,8 @@ ActiveRecord::Schema.define(:version => 20130920155739) do
     t.string   "quality"
     t.boolean  "concretedrive"
     t.boolean  "sprinklers"
+    t.integer  "parcel_id"
+    t.text     "attachments"
   end
 
   create_table "listings", :force => true do |t|

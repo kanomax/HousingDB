@@ -1,12 +1,12 @@
- <div class ="container-fluid">
-<div class="span6 offset2">
+ <div class ="container">
+<div class="col-md-6 col-lg-offset-2">
 <h1>Search Houses</h1>
 </div>
 </div>
 <br />
-<div class="container-fluid">
-<div class="row-fluid">
-<div class="span6">
+<div class="container">
+<div class="row">
+<div class="col-md-6">
 <%= search_form_for @search, :url => houses_searchresults_path, :validate => true do |f| %>
 	<%= f.label :address_cont, "Address", :class => 'label'%><br /><%= f.text_field :address_cont %><br /><br />
 	
@@ -19,8 +19,11 @@
     <%= f.label :zipcode_cont, "Zipcode", :class => 'label'%><br />
     <%= f.text_field :zipcode_eq %><br /><br />
     
-    <%= f.label :county_cont, "State", :class => 'label'%><br />
+    <%= f.label :county_cont, "County", :class => 'label'%><br />
     <%= f.text_field :county_cont %><br /><br />
+    
+        <%= f.label :parcel_id_cont, "Parcel ID", :class => 'label'%><br />
+    <%= f.text_field :parcel_id_cont %><br /><br />
     
     <%= f.label :style_eq, "Style", :class => 'label'%><br />
     <%= f.select :style_eq, [["One Story"],["1.5 Story"], ["Two Story"], ["Three Story"], ["Split Story"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
@@ -28,10 +31,10 @@
     <%= f.label :garagestalls_eq, "Garage Stalls", :class => 'label' %><br />
     <%= f.select :garagestalls_eq, [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br /> 
     
-   <%= f.check_box :concretedrive_eq, :as => :boolean%><%= f.label :concretedrive, "Concrete Drive", :class => 'label'%><br />
+   
    
     </div>
-    <div class="span6">
+    <div class="col-md-6">
       
     <%= f.label :fireplaces_eq, "Fireplaces", :class => 'label' %><br />
     <%= f.select :fireplaces_eq, (0..4), :include_blank => true, :class =>'btn-large'%><br /><br /> 
@@ -54,11 +57,13 @@
    <%= f.label :condtion_eq, "Quality", :class => 'label'%><br />
    <%= f.select :condition_eq, [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />  
    
-   <%= f.check_box :sprinklers_eq, :as => :boolean%><%= f.label :sprinklers, "Underground Sprinklers", :class => 'label'%><br />  
+   <%= f.check_box :sprinklers_eq, :as => :boolean%><%= f.label :sprinklers, "Underground Sprinklers", :class => 'label'%><br /> 
+   
+   <%= f.check_box :concretedrive_eq, :as => :boolean%><%= f.label :concretedrive, "Concrete Drive", :class => 'label'%><br /> 
     </div>
     </div>
        
-  <div class="span6 offset1">  
+  <div class="col-md-6 col-lg-offset-1">  
     <%= f.label :lotsize_gteq, "Lot Size (Sq. Ft.) Range", :class => 'label' %><br />
     <%= f.text_field :lotsize_gteq %>
     <%= f.label :lotsize_lteq, "through", :class => 'label label-info' %>
@@ -108,7 +113,7 @@
    
 
     </div>
-    <div class="span3 offset3">
+    <div class="col-md-3 col-lg-offset-3">
  <%= f.submit "Search", :class => "btn btn-primary" %>
  <%= link_to 'Back to Home', houses_path, :class => 'btn btn-inverse' %>
  
