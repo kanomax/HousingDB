@@ -19,8 +19,8 @@
     	<th><%= number_to_currency(sale.price) %></th>
     	<th><%= sale.contractprice.try(:strftime,"%m/%d/%Y") %></th>
     	<th><%= sale.dom %></th>
-    	<th><% unless sale.agent_id.nil? %>
-    		<%= Agent.find(sale.agent_id).name%>
+    	<th><% unless sale.agent.nil? %>
+    		<%= Agent.find(sale.agent).name%>
     		<% end %></th>
     	<th><%= sale.concession %></th>
     	<th><%= sale.specialterms %></th>
@@ -33,4 +33,4 @@
 <% end %>
 </tbody>
 </table>
-<%= link_to 'Back', :back%>
+<%= link_to 'Back to House', house_path(@house.id)%>

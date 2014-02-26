@@ -21,6 +21,7 @@
 	    <%= f.input :basementsffinish, label: "Basement Square Feet (Finish)", as: :string %><br /><br />
 	    <%= f.input :concretedrive, :as => :boolean, :inline_label => "Concrete Drive", :label => false%> 
 		<%= f.input :sprinklers, :as => :boolean, :inline_label => "Underground Sprinklers", :label => false%> 
+		<%= f.input :parcel_id, :as => :integer, :inline_label => "Parcel ID", :label => false%> 
 </div>
     	
     	</div>
@@ -46,7 +47,7 @@
 	    <%= f.text_area :outbuilding, :rows => 10, :class => "span9" %><br /><br />
 	    <%= f.label :gencomments, "General Comments", :class => "span3 offset3" %><br />
 	    <%= f.text_area :gencomments, :rows => 10, :class => "span9" %><br /><br />
-	    
+	    <%= f.input :houseimg %>
 	    
 	    </div>
 	    <div class="form-actions">

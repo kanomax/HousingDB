@@ -2,9 +2,10 @@
 
 <%= f.error_notification %>
 <div class="radio controls">
-  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name %>
+  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name%>
   </div>
   
-<%= f.button :submit, "Add Agent" %>
+<%= f.button :submit, "Add Agent", :class => 'btn btn-primary', :input_html => {:id => 'submitradio'} %>
+<%= link_to 'Back to House Information', house_path(@listing.house_id), :class => 'btn btn-inverse' %>
 
 <% end %>

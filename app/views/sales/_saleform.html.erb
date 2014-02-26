@@ -10,10 +10,15 @@
     <%= f.input :dom, as: :string, label: "Days on Market", :min => 0 %><br /><br />
     <%= f.input :concession, as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
     <%= f.input :specialterms, label: "Special Terms", as: :text, :input_html => { :class => "span6", :rows => 5 } %><br /><br />
-  	
-	<%= f.button :submit, "Save and Add/Edit Agent", :name => "agentsubmit", :class => "btn-primary" %>
-    <%= f.button :submit, "Save Without Agent", :name => "submit", :class => "btn-primary" %>
+    <%= f.hidden_field :agent_id %>
+	<label>Agent Name</label>
+    <h3 id="agent_attributes_name">
+   	<%= unless @sale.agent.nil?
+ 	@sale.agent.name 
+ 	end %></h3><br />
+	<%= link_to_function "Select Agent", 'select_agent_fields()', :class => "btn" %><br /><br /><br />
+    <%= f.submit "Save Sale Information", :class => "btn btn-primary" %>
     
-    
-  </div>
+</div>
+<%= render('layouts/agent_fields', :f => f) %>
 <% end %>

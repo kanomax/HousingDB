@@ -1,6 +1,9 @@
 <h2><%= @house.address %> <%= @house.city %>, <%= @house.state%> <%= @house.zipcode %></h2>
 
 <p>
+	<br \>
+	<%= image_tag @house.houseimg_url %>
+  <br \>
   <br \>
     <b>County:</b>
   <%= @house.county %><br \>
@@ -40,6 +43,8 @@
   <%= t @house.concretedrive.class %><br \>
     <b>Underground Sprinklers:</b>
   <%= t @house.sprinklers.class %><br \>
+        <b>Parcel ID:</b>
+  <%= @house.parcel_id %><br \>
   <b>Basement Square Footage:</b>
   <%= @house.basementsf %><br \>
 <b>Basement Square Footage (Finish):</b>
@@ -64,6 +69,9 @@
 
 <%= link_to 'Edit House', edit_house_path(@house) %> | 
 <%= link_to 'Delete House', @house, confirm: 'Are you sure?', method: :delete %> <br \>
+
+<%= link_to 'Add Attachments', addattach_house_path(@house) %> |
+<%= link_to 'Edit Attachment', editattach_house_path(@house) %> <br \>
 
 <%= link_to 'Show Listing Information', house_listings_path(@house) %> |
 <%= link_to 'Add Listing Information', new_house_listing_path(@house) %> <br \>
