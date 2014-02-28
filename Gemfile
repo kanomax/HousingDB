@@ -5,11 +5,7 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 group :development do
-gem 'pg', '0.15.1'
-gem "jquery-fileupload-rails"
-gem "carrierwave"
-gem "gon"
-gem "nested_form"
+
 end
 
 # Gems used only for assets and not required
@@ -22,14 +18,17 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
   gem "bootstrap-sass"
   gem 'uglifier', '>= 1.0.3'
+  gem "carrierwave"
+  gem "gon"
+  gem "nested_form"
+   gem "jquery-fileupload-rails"
 end
-
+  gem 'pg', '0.15.1'
 gem 'simple_form'
 gem 'jquery-rails'
 gem "ransack"
 
 group :production do
-  gem 'pg', '0.15.1'
   gem 'thin'
 end
 # To use ActiveModel has_secure_password
