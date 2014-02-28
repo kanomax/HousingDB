@@ -19,7 +19,6 @@ group :assets do
   gem "bootstrap-sass"
   gem 'uglifier', '>= 1.0.3'
   gem "carrierwave"
-  gem "gon"
   gem "nested_form"
    gem "jquery-fileupload-rails"
 end
@@ -28,8 +27,9 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem "ransack"
 
+
 group :production do
-  gem 'thin'
+  gem 'rails_12factor'
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
