@@ -1,0 +1,7 @@
+<tr class="nested-fields">
+  <td><%= image_tag(f.object.file.url) if f.object.file? %></td>
+    <td><%= f.text_field("file_file_name") %></td>
+    <td><%= f.text_field("created_at") %></td>
+    <td><%= f.text_field("updated_at") %></td>
+    <td><%= link_to_remove_association "Remove this attachment", f %></td>
+    </tr>

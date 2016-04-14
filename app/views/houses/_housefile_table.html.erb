@@ -1,0 +1,26 @@
+<table id="housefile-table" class="table table-hover table-striped">
+  <thead>
+  	<th></th>
+    <th>File Name</th>
+    <th>File Size</th>
+  <th></th>
+  </thead>
+  <tbody>
+    <%= f.fields_for(:housefiles) do |file_form| %>
+      <tr class="fields">
+      	<% if file_form.object.file?%>
+      	<td><% if file_form.object.file_content_type.exclude? "image"%>
+      		<% else %>
+      			<%= image_tag(file_form.object.file.url)%>
+      		<% end %></td>
+        <td><%= file_form.text_field :file_file_name, readonly: true %></td>
+        <td><%= number_to_human_size(file_form.text_field(:file_file_size, :value => number_to_human_size(file_form.object.file_file_size), readonly: true)) %></td>
+			<td><%= link_to "Download file", file_form.object.file_url(:query => {"response-content-disposition" => "file"}) %></td>
+            <td>
+             <%= link_to_remove_fields('Remove', file_form, :title => "Delete this File.") %>
+            </td>
+            <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

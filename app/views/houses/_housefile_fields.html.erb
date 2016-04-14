@@ -1,0 +1,26 @@
+<div class="modal fade" id="new-housefile-fields">
+<div class="modal-dialog">
+<div class="modal-content">	
+<div class="modal-header">
+<button id="closeButton" class="close" type="button">×</button>
+<h3>Add a File</h3>
+</div>
+<div class="modal-body">
+<fieldset>
+<div class="form-group"><label class="control-label" for="ship_pilots_attributes_new_pilots_first_name">File:</label>
+
+<%= f.file_field(:file, :class => "field") %>
+
+</div>
+<%= f.hidden_field(:_destroy, :class => "field") %>
+</fieldset>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary" id="addButton" title="Add this File to the list of Files." type="button">Add</button> 
+<button class="btn btn-default" id="cancelButton" title="Close this screen without adding the File to the list." type="button">Cancel</button></div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+  housefileFieldsUI.init();
+</script>

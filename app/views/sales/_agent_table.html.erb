@@ -1,0 +1,13 @@
+<table id="agent-table" class="table table-hover table-striped">
+  <thead>
+    <th>Agent Name</th>
+  <th></th>
+  </thead>
+  <tbody>
+    <%= f.fields_for(:agent) do |file_form| %>
+      <tr class="fields">
+        <td><%= file_form.text_field :name, readonly: true %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
