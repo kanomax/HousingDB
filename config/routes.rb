@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
       
-
+#Routes
     post 'houses/edit_multiple'
     put 'houses/update_multiple'
     get 'houses/show_multiple'
