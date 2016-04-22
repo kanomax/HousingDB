@@ -1,0 +1,28 @@
+<h1>Listing Information</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th><%= sort_link(@search, :listingdate, "Listing Date") %></th>
+      <th><%= sort_link(@search, :listingprice, "Listing Price") %></th>
+      <th>Agent Name</th>
+ </tr>
+  </thead>
+  <tbody>
+  	
+<% @listings.each do |list| %>
+<tr>
+    	<td><%= list.listingdate.strftime("%m/%d/%Y") %></td>
+    	<td><%= number_to_currency(list.listingprice) %></td>
+    	<th><% unless list.agent_id.nil? %>
+    		<%= Agent.find(list.agent_id).name%>
+    		<% end %>
+    	</th>    	
+    	<th>    	
+    	<!--<%= link_to 'Edit', edit_listing_path(list), :class => 'btn btn-mini' %> //-->
+    	<%= link_to 'Destroy', list, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
+    	</th>
+</tr>
+<% end %>
+</tbody>
+</table>
+<%= link_to 'Back to House', house_path(@house.id)%>

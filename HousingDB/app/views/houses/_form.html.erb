@@ -1,0 +1,61 @@
+<%= simple_form_for(@house, :html => {:novalidate => true})  do |f| %>
+
+
+  
+  <div class="container-fluid">
+  	<%= f.error_notification %>
+ 	<div class="row-fluid"> 	
+  		<div class="span6">
+  			<div class="form-inputs">
+
+    	<%= f.input :address%><br /><br />
+    	<%= f.input :city %><br /><br />
+    	<%= f.input :state %><br /><br />
+    	<%= f.input :zipcode, as: :string %><br /><br />
+    	<%= f.input :county %><br /><br />
+    	<%= f.input :lotsize, label: "Lot Size (Sq. Ft.)", as: :string %><br /><br />
+    	<%= f.input :squarefeet, label: "Total GLA (Sq. Ft.)", as: :string %><br /><br />
+    	<%= f.input :bedrooms, label: "Bedrooms (Above Grade)", as: :string %><br /><br />
+    	<%= f.input :bathrooms, label: "Bathrooms (Above Grade) - UAD", as: :string %><br /><br />
+	    <%= f.input :basementsf, label: "Basement Square Feet", as: :string %><br /><br />
+	    <%= f.input :basementsffinish, label: "Basement Square Feet (Finish)", as: :string %><br /><br />
+	    <%= f.input :concretedrive, :as => :boolean, :inline_label => "Concrete Drive", :label => false%> 
+		<%= f.input :sprinklers, :as => :boolean, :inline_label => "Underground Sprinklers", :label => false%> 
+		<%= f.input :parcel_id, :as => :integer, :inline_label => "Parcel ID", :label => false%> 
+</div>
+    	
+    	</div>
+	    <div class="span6">
+	    <%= f.input :style, collection: [['One Story'],['1.5 Story'], ['Two Story'],['Three Story'],['Split Level'],["Other"]], :class =>'btn-large', include_blank: true %><br /><br />
+	    <%= f.input :year, label: "Year Built", as: :string %><br /><br />
+	    <%= f.input :garagestalls, label: "Garage Stalls", collection: [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["2 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :fireplaces, as: :string %><br /><br /> 
+	    <%= f.input :woodstoves, label: "Wood Stoves", as: :string %><br /><br /> 
+	    <%= f.input :heating, collection: [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br />
+	    <%= f.input :cooling, collection: [["C/A"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :siding, collection: [["None"],["Wood"], ["Hardboard"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"],["Cement Board"],["Stucco"],["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br />
+	    <%= f.input :condition, label: "Condtion", collection: [["C1"],["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :quality, label: "Quality", collection: [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => true, :class =>'btn-large'%><br /><br /> 
+	    <%= f.input :basementbd, label: "Basement Bedroom", as: :string %><br /><br />
+	    <%= f.input :basementbath, label: "Basement Bathroom - UAD", as: :string %><br /><br />
+	    
+	    </div>
+</div>
+	    <%= f.label :basementother, "Basement Information", :class => "span3 offset3" %><br />
+	    <%= f.text_area :basementother,  :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :outbuilding, "Outbuildings", :class => "span3 offset3" %><br />
+	    <%= f.text_area :outbuilding, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :gencomments, "General Comments", :class => "span3 offset3" %><br />
+	    <%= f.text_area :gencomments, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.input :houseimg %>
+	    
+	    </div>
+	    <div class="form-actions">
+	    <div class="container-fluid">  
+	     <div class="span3 offset3">
+  		<%= f.button :submit, :class => "btn btn-primary" %>
+  		<%= link_to "Cancel", :back, :class => "btn btn-danger" %>
+  		</div>
+    </div>
+  </div>
+<% end %>

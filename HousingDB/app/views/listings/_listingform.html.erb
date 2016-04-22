@@ -1,0 +1,43 @@
+<%= simple_form_for([@house, @listing]) do |f| %>  
+
+<%= f.error_notification %>
+
+  <div class="form-actions">
+    <%= f.input :listingprice, label: "Listing Price", :min => 0 %><br /><br />
+    <%= f.input :listingdate, label: "Listing Date", :start_year => (Time.now.year - 40), :end_year => Time.now.year, :include_blank => true%><br /><br />
+    <%= f.hidden_field :agent_id %>
+	<label>Agent Name</label>
+    <h3 id="agent_attributes_name">
+ 	<%= 
+ 	unless @listing.agent.nil?
+ 	@listing.agent.name 
+ 	end %></h3><br />
+    <%= link_to_function "Select Agent", 'select_agent_fields()', :class => "btn" %><br /><br /><br />
+    <%= f.submit "Save Listing Information", :class => "btn btn-primary" %>
+  </div>
+<div class="modal fade" id="new-agent-fields">
+<div class="modal-header">
+<button id="closeButton" class="close" type="button">×</button>
+<h3>Add an Agent</h3>
+</div>
+<div class="modal-body">
+<fieldset>
+<div class="control-group">
+<div class="controls">
+<%= f.input :agent_id, 
+          :collection => Agent.all, 
+          :as => :radio_buttons, 
+          :label => false,
+          :checked => true %>
+</div>
+</div>
+</fieldset>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary" id="addButton" title="Add this File to the list of Files." type="button">Add</button> 
+<button class="btn btn-inverse" id="cancelButton" title="Close this screen without adding the File to the list." type="button">Cancel</button></div>
+</div>
+<script type="text/javascript">
+  selectFieldsUI.init();
+</script>
+<% end %>

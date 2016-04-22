@@ -1,0 +1,25 @@
+<div class="modal fade" id="new-agent-fields">
+<div class="modal-header">
+<button id="closeButton" class="close" type="button">×</button>
+<h3>Add an Agent</h3>
+</div>
+<div class="modal-body">
+<fieldset>
+<div class="control-group">
+<div class="controls">
+<%= f.input :agent_id, 
+          :collection => Agent.all, 
+          :as => :radio_buttons, 
+          :label => false,
+          :checked => true %>
+</div>
+</div>
+</fieldset>
+</div>
+<div class="modal-footer">
+<button class="btn btn-primary" id="addButton" title="Add this File to the list of Files." type="button">Add</button> 
+<button class="btn btn-inverse" id="cancelButton" title="Close this screen without adding the File to the list." type="button">Cancel</button></div>
+</div>
+<script type="text/javascript">
+  selectFieldsUI.init();
+</script>

@@ -1,0 +1,74 @@
+<table>
+<% @houses.each do |house| %>
+<td>
+<h5><%= house.address %> <%= house.city %>, <%= house.state%> <%= house.zipcode %></h5>
+
+<p>
+  <br \>
+    <b>County:</b>
+  <%= house.county %><br \>
+      <b>Status:</b>
+  <%= house.status %><br \>
+       <b>Price:</b>
+  <%= house.currentprice %><br \>
+  <b>Lot Size (Sq. Ft.):</b>
+  <%= house.lotsize %><br \>
+  <b>Total GLA (Sq. Ft.):</b>
+  <%= house.squarefeet %><br \>
+  <b>Bedrooms (Above Grade):</b>
+  <%= house.bedrooms %><br \>
+  <b>Bathrooms (Above Grade) - UAD:</b>
+  <%= house.bathrooms %><br \>
+  <b>Style:</b>
+  <%= house.style %><br \>
+  <b>Year Build:</b>
+  <%= house.year %><br \>
+   <b>Condition:</b>
+  <%= house.condition %><br \>
+    <b>Quality:</b>
+  <%= house.quality %><br \>
+    <b>Garage Stalls:</b>
+  <%= house.garagestalls %><br \>
+<b>Fireplaces:</b>
+  <%= house.fireplaces %><br \>
+<b>Wood Stoves:</b>
+  <%= house.woodstoves %><br \>
+<b>Heating:</b>
+  <%= house.heating %><br \>
+<b>Cooling:</b>
+  <%= house.cooling %><br \>
+  <b>Siding:</b>
+  <%= house.siding %><br \>
+    <b>Concrete Drive:</b>
+  <%= t house.concretedrive.class %><br \>
+    <b>Underground Sprinklers:</b>
+  <%= t house.sprinklers.class %><br \>
+        <b>Parcel ID:</b>
+  <%= @house.parcel_id %><br \>
+  <b>Basement Square Footage:</b>
+  <%= house.basementsf %><br \>
+<b>Basement Square Footage (Finish):</b>
+  <%= house.basementsffinish %><br \>
+  <b>Basement Bedrooms:</b>
+  <%= house.basementbd %><br \>
+  <b>Basement Bathrooms - UAD:</b>
+  <%= house.basementbath %><br \>
+  <b>Basement Information:</b>
+  <%= house.basementother %><br \><br \>
+
+  <b>Out Buildings:</b>
+  <%= house.outbuilding %><br \><br \>
+
+  <b>General Comment:</b>
+  <%= house.gencomments %><br \><br \>
+
+  
+  
+  
+  
+</p>
+</td>
+<% end %>
+</table>
+<%= link_to 'Back', :back %>
+
