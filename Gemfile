@@ -23,10 +23,10 @@ end
 gem 'simple_form'
 gem 'jquery-rails'
 gem "ransack"
-
+gem 'thin'
 group :production do
   gem 'pg', '0.15.1'
-  gem 'thin'
+
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

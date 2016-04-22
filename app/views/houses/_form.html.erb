@@ -1,7 +1,6 @@
 <%= simple_form_for(@house, :html => {:novalidate => true})  do |f| %>
 
 
-  <div class="form-actions">
   <div class="container">
   	<div class="col-md-6">
   	<%= f.error_notification %>
@@ -54,6 +53,5 @@
   		<%= f.button :submit, :class => "btn btn-primary" %>
   		<%= link_to "Cancel", :back, :class => "btn btn-danger" %>
     </div>
-  </div>
   </div>
 <% end %>

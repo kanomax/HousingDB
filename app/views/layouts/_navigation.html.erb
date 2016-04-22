@@ -1,15 +1,15 @@
 <div class="navbar navbar-fixed-top">
  <div class="navbar navbar-inverse">
-  <div class="navbar-inner">
+  <div class="navbar-header">
     <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
+      <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
+        <span class="glyphicon glyphicon-bar"></span>
       </a>
-      <a class="brand" href="/houses/">Housing Database</a>
-      <div class="nav-collapse">
-        <ul class="nav">
+      <a class="navbar-brand" href="/houses/">Housing Database</a>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
           <li><%= link_to "Create New House", new_house_path %></li>
           <li><%= link_to "View All Houses", houses_viewall_path %></li>
           <li><%= link_to "Search Houses", houses_search_path %></li>
