@@ -13,6 +13,7 @@ before_filter :get_house
  
  def create
  @sale = @house.sales.new(params[:sale])
+
   if @sale.save
 
   
@@ -38,6 +39,7 @@ before_filter :get_house
  
  def new 
 @sale = Sale.new
+ @sale.build_agent
  end
  
  def edit
@@ -56,10 +58,11 @@ before_filter :get_house
   
   def update
     @sale = Sale.find(params[:id])
+     @sale.build_agent
 
     respond_to do |format|
       if @sale.update_attributes(params[:sale])
-        format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
+        format.html { redirect_to house_sales_path(@sale.house_id), notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

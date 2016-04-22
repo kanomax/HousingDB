@@ -6,6 +6,7 @@
   <thead>
     <tr>
     	<th></th>
+      <th><%= sort_link(@search, :houseimg, "")%></th>
       <th><%= sort_link(@search, :address, "Address") %></th>
       <th><%= sort_link(@search, :city, "City") %></th>
       <th><%= sort_link(@search, :state, "State") %></th>
@@ -25,6 +26,7 @@
 <% @houses.each do |house| %>
 	<tr>
 	<td><%= check_box_tag "house_ids[]", house.id %></td>
+	<td><%= image_tag house.houseimg_url(:thumb) %></td>
     <td><%= house.address %></td>
 	<td><%= house.city %></td>
     <td><%= house.state %></td>

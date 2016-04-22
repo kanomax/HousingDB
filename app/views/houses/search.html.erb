@@ -19,18 +19,32 @@
     <%= f.label :zipcode_cont, "Zipcode"%><br />
     <%= f.text_field :zipcode_eq, :class => "form-control"  %><br /><br />
     
+<<<<<<< HEAD
     <%= f.label :county_cont, "County"%><br />
     <%= f.text_field :county_cont, :class => "form-control"  %><br /><br />
     
         <%= f.label :parcel_id_cont, "Parcel ID"%><br />
     <%= f.text_field :parcel_id_cont, :class => "form-control"  %><br /><br />
+=======
+    <%= f.label :county_cont, "County", :class => 'label'%><br />
+    <%= f.text_field :county_cont %><br /><br />
+    
+        <%= f.label :parcel_id_cont, "Parcel ID", :class => 'label'%><br />
+    <%= f.text_field :parcel_id_cont %><br /><br />
+    
+    <%= f.label :style_eq, "Style", :class => 'label'%><br />
+    <%= f.select :style_eq, [["One Story"],["1.5 Story"], ["Two Story"], ["Three Story"], ["Split Story"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
+>>>>>>> origin/master
     
     <%= f.label :style_eq, "Style"%><br />
     <%= f.select :style_eq, [["One Story"],["1.5 Story"], ["Two Story"], ["Three Story"], ["Split Story"], ["Other"]], :include_blank => 'All', :class => 'form-control'%><br /><br />
     
+<<<<<<< HEAD
     <%= f.label :garagestalls_eq, "Garage Stalls" %><br />
     <%= f.select :garagestalls_eq, [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />
     
+=======
+>>>>>>> origin/master
    
    
     </div>
@@ -57,9 +71,15 @@
    <%= f.label :condtion_eq, "Quality"%><br />
    <%= f.select :condition_eq, [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => 'All', :class =>'btn-large'%><br /><br />  
    
+<<<<<<< HEAD
    <%= f.check_box :sprinklers_eq, :as => :boolean%><%= f.label :sprinklers, "Underground Sprinklers"%><br /> 
    
    <%= f.check_box :concretedrive_eq, :as => :boolean%><%= f.label :concretedrive, "Concrete Drive"%><br /> 
+=======
+   <%= f.check_box :sprinklers_eq, :as => :boolean%><%= f.label :sprinklers, "Underground Sprinklers", :class => 'label'%><br /> 
+   
+   <%= f.check_box :concretedrive_eq, :as => :boolean%><%= f.label :concretedrive, "Concrete Drive", :class => 'label'%><br /> 
+>>>>>>> origin/master
     </div>
     </div>
        

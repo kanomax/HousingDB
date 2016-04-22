@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131211024659) do
+=======
+ActiveRecord::Schema.define(:version => 20140222172317) do
+>>>>>>> origin/master
 
   create_table "agents", :force => true do |t|
     t.string   "name"
@@ -24,24 +28,34 @@ ActiveRecord::Schema.define(:version => 20131211024659) do
     t.string   "cellphone"
   end
 
+  create_table "housefiles", :force => true do |t|
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.integer  "house_id"
+  end
+
   create_table "houses", :force => true do |t|
     t.string   "address"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
     t.string   "county"
     t.integer  "lotsize"
     t.integer  "squarefeet"
-    t.decimal  "bedrooms",         :precision => 4, :scale => 2
+    t.decimal  "bedrooms",              :precision => 4, :scale => 2
     t.decimal  "bathrooms"
     t.string   "style"
     t.integer  "year"
     t.integer  "basementsf"
     t.integer  "basementsffinish"
-    t.decimal  "basementbd",       :precision => 4, :scale => 2
-    t.decimal  "basementbath",     :precision => 4, :scale => 2
+    t.decimal  "basementbd",            :precision => 4, :scale => 2
+    t.decimal  "basementbath",          :precision => 4, :scale => 2
     t.text     "basementother"
     t.string   "garagestalls"
     t.string   "heating"
@@ -49,8 +63,8 @@ ActiveRecord::Schema.define(:version => 20131211024659) do
     t.string   "siding"
     t.boolean  "replwindows"
     t.string   "outbuilding"
-    t.decimal  "fireplaces",       :precision => 4, :scale => 2
-    t.decimal  "woodstoves",       :precision => 4, :scale => 2
+    t.decimal  "fireplaces",            :precision => 4, :scale => 2
+    t.decimal  "woodstoves",            :precision => 4, :scale => 2
     t.string   "gencomments"
     t.string   "status"
     t.integer  "currentprice"
@@ -60,6 +74,13 @@ ActiveRecord::Schema.define(:version => 20131211024659) do
     t.boolean  "sprinklers"
     t.integer  "parcel_id"
     t.text     "attachments"
+<<<<<<< HEAD
+=======
+    t.string   "houseimg_file_name"
+    t.string   "houseimg_content_type"
+    t.integer  "houseimg_file_size"
+    t.datetime "houseimg_updated_at"
+>>>>>>> origin/master
   end
 
   create_table "listings", :force => true do |t|

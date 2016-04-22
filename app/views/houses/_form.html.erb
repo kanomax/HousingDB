@@ -18,8 +18,14 @@
 	    <%= f.input :basementsf, label: "Basement Square Feet", as: :string %><br /><br />
 	    <%= f.input :basementsffinish, label: "Basement Square Feet (Finish)", as: :string %><br />
 	    <%= f.input :concretedrive, :as => :boolean, :inline_label => "Concrete Drive", :label => false%> 
+<<<<<<< HEAD
 		
 		 
+=======
+		<%= f.input :sprinklers, :as => :boolean, :inline_label => "Underground Sprinklers", :label => false%> 
+		<%= f.input :parcel_id, :as => :integer, :inline_label => "Parcel ID", :label => false%> 
+</div>
+>>>>>>> origin/master
     	
     	</div>
 	    <div class="col-md-6">
@@ -39,6 +45,7 @@
 	    
 	    </div>
 </div>
+<<<<<<< HEAD
 	    <br /><br /><%= f.label :basementother, "Basement Information", :class => "col-md-3 col-lg-offset-3" %><br />
 	    <br /><%= f.text_area :basementother,  :rows => 10, :class => "col-md-9" %><br /><br />
 	    <br /><%= f.label :outbuilding, "Outbuildings", :class => "col-md-3 col-lg-offset-3" %><br />
@@ -46,6 +53,15 @@
 	    <br /><%= f.label :gencomments, "General Comments", :class => "col-md-3 col-lg-offset-3" %><br />
 	    <br /><%= f.text_area :gencomments, :rows => 10, :class => "col-md-9" %><br /><br />
 	    
+=======
+	    <%= f.label :basementother, "Basement Information", :class => "span3 offset3" %><br />
+	    <%= f.text_area :basementother,  :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :outbuilding, "Outbuildings", :class => "span3 offset3" %><br />
+	    <%= f.text_area :outbuilding, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.label :gencomments, "General Comments", :class => "span3 offset3" %><br />
+	    <%= f.text_area :gencomments, :rows => 10, :class => "span9" %><br /><br />
+	    <%= f.input :houseimg %>
+>>>>>>> origin/master
 	    
 
 	    <div class="container">  

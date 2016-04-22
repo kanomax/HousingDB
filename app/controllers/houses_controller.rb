@@ -29,7 +29,7 @@ class HousesController < ApplicationController
   # GET /houses/new.json
   def new
     @house = House.new
-
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @house }
@@ -64,7 +64,7 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.update_attributes(params[:house])
-        format.html { redirect_to @house, notice: 'House was successfully updated.' }
+        format.html { redirect_to @house, notice: 'Success!' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -111,5 +111,15 @@ class HousesController < ApplicationController
   def show_multiple
     @houses = House.find(params[:house_ids])
   end
-  
+  def addattach
+    @housefiles = Housefile.find(:all)
+    @house = House.find(params[:id])
+    @house.housefiles.build
+    
+  end
+    def editattach
+    @housefiles = Housefile.find(:all)
+    @house = House.find(params[:id])
+    
+  end
 end

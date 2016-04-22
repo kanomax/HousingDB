@@ -8,11 +8,14 @@ HousingDB::Application.routes.draw do
     get "houses/searchresults"
     get "houses/search"
     
+  resources :housefiles  
   resources :houses do
     resources :listings
     resources :sales
+    resources :housefiles
     get'statusupdate', :on => :member
-    
+    get'addattach', :on => :member
+    get'editattach', :on => :member
   end
 root to: 'houses#index'
   resources :agents
