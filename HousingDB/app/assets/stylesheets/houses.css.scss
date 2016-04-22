@@ -1,3 +1,14 @@
 // Place all the styles related to the houses controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.form-inline .form-group {
+    width:45%;
+}
+
+.form-inline .form-group input {
+    width:100%;
+}
+
+.form-inline .form-group select {
+    width:100%;
+}

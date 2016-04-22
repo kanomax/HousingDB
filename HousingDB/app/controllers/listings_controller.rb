@@ -12,12 +12,13 @@ class ListingsController < ApplicationController
  end
  
  def create
- @listing = @house.listings.new(params[:listing])
+  ad_params = params.require(:listing).permit!
+ @listing = @house.listings.new(ad_params)
   if @listing.save
-   if @listing.listingdate >= @house.listings.find(:first, :order => "listingdate DESC").listingdate
-    if @house.sales.find(:first, :order => "saledate DESC") == nil
+   if @listing.listingdate >= @house.listings.order('listingdate DESC').first.listingdate
+    if @house.sales.order('saledate DESC').first == nil
       @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
-    elsif @listing.listingdate > @house.sales.find(:first, :order => "saledate DESC").saledate
+    elsif @listing.listingdate > @house.sales.order('saledate DESC').first.saledate
       @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
     end    
    end
@@ -43,7 +44,8 @@ class ListingsController < ApplicationController
     @listing = Listing.find(params[:id])
 
     respond_to do |format|
-      if @listing.update_attributes(params[:listing]) and params[:param1] == nil
+      ad_params = params.require(:listing).permit!
+      if @listing.update_attributes(ad_params) and params[:param1] == nil
         format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
