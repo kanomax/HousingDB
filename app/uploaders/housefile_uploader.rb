@@ -9,13 +9,13 @@ include CarrierWave::Compatibility::Paperclip
   
   
 
-  # process :set_content_type
-  # process :save_content_type_and_size_in_model
+  process :set_content_type
+  process :save_content_type_and_size_in_model
 
-  # def save_content_type_and_size_in_model
-    # model.file_content_type = file.content_type if file.content_type
-    # model.file_file_size = file.size
-  # end
+  def save_content_type_and_size_in_model
+    model.file_content_type = content_type if file.content_type
+    model.file_size = file.size
+  end
   # Choose what kind of storage to use for this uploader:
   storage :file
   # storage :fog

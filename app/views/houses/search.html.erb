@@ -33,7 +33,8 @@
     
     <!-- <%= f.label :garagestalls_eq, "Garage Stalls", :class => 'label label-default' %><br /> -->
     <%= f.input :garagestalls_eq, collection: [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br /> 
-    
+       <%= f.label :concretedrive_true, "Sprinklers", :class => 'control-label' %><br />
+    <%= f.select :concretedrive_true,[['Yes', 1], ['No', 0]],{include_blank: 'All'},{class: 'form-control'} %>    
    
    
     </div>
@@ -59,12 +60,11 @@
    
    <!-- <%= f.label :condtion_eq, "Quality", :class => 'label label-default'%><br /> -->
    <%= f.input :condition_eq, collection: [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />  
-   
-    <%= f.input :sprinklers_eq, :as => :boolean, :inline_label => "Underground Sprinklers", :label => false%>
-   
-   <%= f.input :concretedrive_eq, :as => :boolean, :inline_label => "Concrete Drive", :label => false%><br /> 
+   <%= f.label :sprinklers_true, "Concrete Drive", :class => 'control-label' %><br />
+    <%= f.select :sprinklers_true,[['Yes', 1], ['No', 0]],{include_blank: 'All'},{class: 'form-control'} %>
     </div>
     </div>
+    <p></p>
    <div class="row">    
   <div class="col-md-9 col-lg-offset-1">  
 
