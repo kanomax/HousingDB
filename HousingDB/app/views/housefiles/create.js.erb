@@ -1,5 +1,0 @@
-<% if @housefile.new_record? %>
-  alert("Failed to upload file: <%= j @house.errors.full_messages.join(', ').html_safe %>");
-<% else %>
-  $("#housefiles").append("<%= j render(@house) %>");
-<% end %>
