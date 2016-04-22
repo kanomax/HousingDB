@@ -24,9 +24,14 @@
     		<% end %></th>
     	<th><%= sale.concession %></th>
     	<th><%= sale.specialterms %></th>
+<<<<<<< HEAD
     	<th>    
         <%= link_to 'Modify Agent', agentadd_sale_path(sale), :class => 'btn btn-xs btn-primary' %>	
     	<%= link_to 'Edit', edit_sale_path(sale), :class => 'btn btn-warning btn-xs' %>
+=======
+    	<th>    	
+    	<%= link_to 'Edit', edit_sale_path(sale), :class => 'btn btn-xs btn-default' %>
+>>>>>>> origin/master
     	<%= link_to 'Destroy', sale, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
     	</th>
 

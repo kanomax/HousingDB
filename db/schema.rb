@@ -9,53 +9,63 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20131211024659) do
 =======
 ActiveRecord::Schema.define(:version => 20140222172317) do
 >>>>>>> origin/master
+=======
+ActiveRecord::Schema.define(version: 20160415165840) do
+>>>>>>> origin/master
 
-  create_table "agents", :force => true do |t|
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "agents", force: :cascade do |t|
+    t.integer  "listing_id"
     t.string   "name"
     t.string   "companyname"
     t.string   "address"
     t.string   "phone"
     t.string   "email"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
     t.string   "cellphone"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
-  create_table "housefiles", :force => true do |t|
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+  add_index "agents", ["listing_id"], name: "index_agents_on_listing_id", using: :btree
+
+  create_table "housefiles", force: :cascade do |t|
     t.integer  "house_id"
+    t.string   "file_name"
+    t.string   "file_content_type"
+    t.integer  "file_size"
+    t.integer  "file_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
 
-  create_table "houses", :force => true do |t|
+  add_index "housefiles", ["house_id"], name: "index_housefiles_on_house_id", using: :btree
+
+  create_table "houses", force: :cascade do |t|
     t.string   "address"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
     t.string   "city"
     t.string   "state"
     t.integer  "zipcode"
     t.string   "county"
     t.integer  "lotsize"
     t.integer  "squarefeet"
-    t.decimal  "bedrooms",              :precision => 4, :scale => 2
+    t.decimal  "bedrooms",              precision: 4, scale: 2
     t.decimal  "bathrooms"
     t.string   "style"
     t.integer  "year"
     t.integer  "basementsf"
     t.integer  "basementsffinish"
-    t.decimal  "basementbd",            :precision => 4, :scale => 2
-    t.decimal  "basementbath",          :precision => 4, :scale => 2
+    t.decimal  "basementbd",            precision: 4, scale: 2
+    t.decimal  "basementbath",          precision: 4, scale: 2
     t.text     "basementother"
     t.string   "garagestalls"
     t.string   "heating"
@@ -63,8 +73,8 @@ ActiveRecord::Schema.define(:version => 20140222172317) do
     t.string   "siding"
     t.boolean  "replwindows"
     t.string   "outbuilding"
-    t.decimal  "fireplaces",            :precision => 4, :scale => 2
-    t.decimal  "woodstoves",            :precision => 4, :scale => 2
+    t.decimal  "fireplaces",            precision: 4, scale: 2
+    t.decimal  "woodstoves",            precision: 4, scale: 2
     t.string   "gencomments"
     t.string   "status"
     t.integer  "currentprice"
@@ -80,29 +90,34 @@ ActiveRecord::Schema.define(:version => 20140222172317) do
     t.string   "houseimg_content_type"
     t.integer  "houseimg_file_size"
     t.datetime "houseimg_updated_at"
+<<<<<<< HEAD
+>>>>>>> origin/master
+=======
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
 >>>>>>> origin/master
   end
 
-  create_table "listings", :force => true do |t|
-    t.string   "listingprice"
-    t.date     "listingdate"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+  create_table "listings", force: :cascade do |t|
     t.integer  "house_id"
     t.integer  "agent_id"
+    t.integer  "listingprice"
+    t.date     "listingdate"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
   end
 
-  create_table "sales", :force => true do |t|
-    t.integer  "price"
-    t.date     "saledate"
-    t.date     "contractprice"
-    t.string   "concession"
-    t.string   "specialterms"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+  create_table "sales", force: :cascade do |t|
     t.integer  "house_id"
     t.integer  "agent_id"
+    t.integer  "price"
+    t.date     "saledate"
+    t.integer  "contractprice"
+    t.string   "concession"
+    t.string   "specialterms"
     t.integer  "dom"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
 end

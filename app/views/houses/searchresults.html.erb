@@ -38,7 +38,11 @@
    	<td><%= house.year %></td>
     <td>	
     	<%= link_to 'Show', house, :class => 'btn btn-xs btn-primary' %>
+<<<<<<< HEAD
     	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-warning btn-xs'%>
+=======
+    	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-xs btn-default'%>
+>>>>>>> origin/master
     	<%= link_to 'Destroy', house, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
   	</td>
   </tr>
@@ -51,8 +55,8 @@
 	
 <% end %>
 
-<%= link_to 'Back to Search', houses_search_path, :class => 'btn btn-inverse' %>
-<%= link_to 'Back to Home', houses_path, :class => 'btn btn-inverse' %>
+<%= link_to 'Back to Search', houses_search_path, :class => 'btn btn-default' %>
+<%= link_to 'Back to Home', houses_path, :class => 'btn btn-default' %>
 </div>
 
 <br />

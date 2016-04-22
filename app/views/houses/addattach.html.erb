@@ -1,4 +1,4 @@
-<%= nested_form_for(@house, :html => {:class => "form-horizontal"}) do |f| %>
+<%= form_for(@house, :html => {:class => "form-horizontal"}) do |f| %>
 <fieldset>
 <%= render('housefile_table', :f => f) %>
 

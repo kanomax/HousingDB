@@ -1,31 +1,32 @@
-HousingDB::Application.routes.draw do
+Rails.application.routes.draw do
       
-
+#Routes
     post 'houses/edit_multiple'
     put 'houses/update_multiple'
     get 'houses/show_multiple'
     get "houses/viewall"
     get "houses/searchresults"
     get "houses/search"
-    
+    get "houses/pdfconverter"
   resources :housefiles  
   resources :houses do
     resources :listings
     resources :sales
     resources :housefiles
-    get'statusupdate', :on => :member
-    get'addattach', :on => :member
-    get'editattach', :on => :member
+    get'statusupdate', on: :member
+    get'addattach', on: :member
+    get'editattach', on: :member
+    post :pdfupload, :on => :collection
   end
 root to: 'houses#index'
   resources :agents
    resources :sales do 
          resources :agents
-   get'agentadd', :on => :member
+   get'agentadd', on: :member
     end
    resources :listings do 
          resources :agents
-   get'agentadd', :on => :member
+   get'agentadd', on: :member
     end
 
   # The priority is based upon order of creation:
@@ -77,7 +78,6 @@ root to: 'houses#index'
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'houses#index'
 
   # See how all your routes lay out with "rake routes"
 

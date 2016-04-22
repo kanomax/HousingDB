@@ -11,13 +11,13 @@
       	<% if file_form.object.file?%>
       	<td><% if file_form.object.file_content_type.exclude? "image"%>
       		<% else %>
-      			<%= image_tag(file_form.object.file.url)%>
+      			<%= image_tag(file_form.object.file.thumb)%>
       		<% end %></td>
-        <td><%= file_form.text_field :file_file_name, readonly: true %></td>
-        <td><%= number_to_human_size(file_form.text_field(:file_file_size, :value => number_to_human_size(file_form.object.file_file_size), readonly: true)) %></td>
-
+        <td><%= file_form.text_field :file_name, readonly: true %></td>
+        <td><%= number_to_human_size(file_form.text_field(:file_size, :value => number_to_human_size(file_form.object.file_size), readonly: true)) %></td>
+			<td><%= link_to "Download file", file_form.object.file_url(:query => {"response-content-disposition" => "file"}) %></td>
             <td>
-              <%= link_to_remove_fields('Remove', file_form, :title => "Delete this File.") %>
+             <%= link_to_remove_fields('Remove', file_form, :title => "Delete this File.") %>
             </td>
             <% end %>
       </tr>

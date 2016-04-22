@@ -22,7 +22,11 @@
     	<td><%= agent.email %></td>
    	<td>
     	<%= link_to 'Show', agent, :class => 'btn btn-xs btn-primary' %>
+<<<<<<< HEAD
     	<%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-xs btn-warning' %>
+=======
+    	<%= link_to 'Edit', edit_agent_path(agent), :class => 'btn btn-xs btn-default' %>
+>>>>>>> origin/master
     	<%= link_to 'Destroy', agent, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
   	</td>
 </tr>
@@ -30,4 +34,4 @@
 </tbody>
 </table>
 <%= link_to 'Add An Agent', new_agent_path, :class => 'btn btn-primary' %>
-<%= link_to 'Back to Home', root_path, :class => 'btn btn-inverse' %>
+<%= link_to 'Back to Home', root_path, :class => 'btn btn-default' %>
