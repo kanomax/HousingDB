@@ -1,11 +1,15 @@
 require File.expand_path('../boot', __FILE__)
-ENV['RANSACK_FORM_BUILDER'] = '::SimpleForm::FormBuilder'
+
 require 'rails/all'
-require 'kristin'
-require 'nokogiri'
+
 require 'carrierwave'
 
-Bundler.require(*Rails.groups)
+if defined?(Bundler)
+  # If you precompile assets before deploying to production, use this line
+  Bundler.require(*Rails.groups(:assets => %w(development test)))
+  # If you want your assets lazily compiled in production, use this line
+  # Bundler.require(:default, :assets, Rails.env)
+end
 
 module HousingDB
   class Application < Rails::Application
@@ -32,13 +36,13 @@ module HousingDB
     # config.i18n.default_locale = :de
 
     # Configure the default encoding used in templates for Ruby 1.9.
-    #config.encoding = "utf-8"
+    config.encoding = "utf-8"
 
     # Configure sensitive parameters which will be filtered from the log file.
-   # config.filter_parameters += [:password]
+    config.filter_parameters += [:password]
 
     # Enable escaping HTML in JSON.
-    #config.active_support.escape_html_entities_in_json = true
+    config.active_support.escape_html_entities_in_json = true
 
     # Use SQL instead of Active Record's schema dumper when creating the database.
     # This is necessary if your schema can't be completely dumped by the schema dumper,
@@ -52,11 +56,11 @@ module HousingDB
     # config.active_record.whitelist_attributes = true
 
     # Enable the asset pipeline
-    #config.assets.enabled = true
+    config.assets.enabled = true
 
     # Version of your assets, change this if you want to expire all your assets
-    #config.assets.version = '1.0'
-   config.active_record.raise_in_transactional_callbacks = true
+    config.assets.version = '1.0'
+    
     
 
   end

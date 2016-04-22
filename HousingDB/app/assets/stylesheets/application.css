@@ -10,9 +10,8 @@
  *
  *= require_self
  *= require bootstrap_and_overrides
- *= require jquery.fileupload
- *= require jquery.fileupload-ui
  *= require_tree .
+ *= require jquery.fileupload-ui
  */
 .content {
 

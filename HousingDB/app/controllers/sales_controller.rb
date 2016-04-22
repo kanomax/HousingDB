@@ -12,16 +12,15 @@ before_filter :get_house
  end
  
  def create
-   ad_params = params.require(:sale).permit!
- @sale = @house.sales.new(ad_params)
+ @sale = @house.sales.new(params[:sale])
 
   if @sale.save
 
   
-  if @sale.saledate >= @house.sales.order('saledate DESC').first.saledate
-    if  @house.listings.order('listingdate DESC').first == nil
+  if @sale.saledate >= @house.sales.find(:first, :order => "saledate DESC").saledate
+    if  @house.listings.find(:first, :order => "listingdate DESC") == nil
       @house.update_attributes(:currentprice => @sale.price, :status => 'Sold')
-    elsif @sale.saledate >= @house.listings.order('listingdate DESC').first.listingdate
+    elsif @sale.saledate >= @house.listings.find(:first, :order => "listingdate DESC").listingdate
       @house.update_attributes(:currentprice => @sale.price, :status => 'Sold')
     end    
   end
@@ -62,8 +61,7 @@ before_filter :get_house
      @sale.build_agent
 
     respond_to do |format|
-      ad_params = params.require(:sake).permit!
-      if @sale.update_attributes(ad_params)
+      if @sale.update_attributes(params[:sale])
         format.html { redirect_to house_sales_path(@sale.house_id), notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else

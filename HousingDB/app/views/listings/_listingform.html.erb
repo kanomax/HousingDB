@@ -15,7 +15,7 @@
     <%= link_to_function "Select Agent", 'select_agent_fields()', :class => "btn" %><br /><br /><br />
     <%= f.submit "Save Listing Information", :class => "btn btn-primary" %>
   </div>
-<!-- <div class="modal fade" id="new-agent-fields">
+<div class="modal fade" id="new-agent-fields">
 <div class="modal-header">
 <button id="closeButton" class="close" type="button">×</button>
 <h3>Add an Agent</h3>
@@ -36,9 +36,8 @@
 <div class="modal-footer">
 <button class="btn btn-primary" id="addButton" title="Add this File to the list of Files." type="button">Add</button> 
 <button class="btn btn-inverse" id="cancelButton" title="Close this screen without adding the File to the list." type="button">Cancel</button></div>
-</div> -->
-<!-- <script type="text/javascript">
+</div>
+<script type="text/javascript">
   selectFieldsUI.init();
-</script> -->
-<%= render('layouts/agent_fields', :f => f) %>
+</script>
 <% end %>

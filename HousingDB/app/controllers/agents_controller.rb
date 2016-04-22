@@ -4,8 +4,7 @@ class AgentsController < ApplicationController
  end
 
  def create
-   ad_params = params.require(:agent).permit!
-    @agent = Agent.new(ad_params)
+    @agent = Agent.new(params[:agent])
 
    respond_to do |format|
      if @agent.save
@@ -35,8 +34,7 @@ class AgentsController < ApplicationController
     @agent = Agent.find(params[:id])
 
     respond_to do |format|
-      ad_params = params.require(:agent).permit!
-      if @agent.update_attributes(ad_params)
+      if @agent.update_attributes(params[:agent])
         format.html { redirect_to @agent, notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
