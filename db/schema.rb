@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20131211024659) do
-=======
-ActiveRecord::Schema.define(:version => 20140222172317) do
->>>>>>> origin/master
-=======
 ActiveRecord::Schema.define(version: 20160415165840) do
->>>>>>> origin/master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,18 +76,12 @@ ActiveRecord::Schema.define(version: 20160415165840) do
     t.boolean  "sprinklers"
     t.integer  "parcel_id"
     t.text     "attachments"
-<<<<<<< HEAD
-=======
     t.string   "houseimg_file_name"
     t.string   "houseimg_content_type"
     t.integer  "houseimg_file_size"
     t.datetime "houseimg_updated_at"
-<<<<<<< HEAD
->>>>>>> origin/master
-=======
     t.datetime "created_at",                                    null: false
     t.datetime "updated_at",                                    null: false
->>>>>>> origin/master
   end
 
   create_table "listings", force: :cascade do |t|

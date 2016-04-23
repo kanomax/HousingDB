@@ -72,11 +72,8 @@ SimpleForm.setup do |config|
   config.error_notification_tag = :div
 
   # CSS class to add for error notification helper.
-<<<<<<< HEAD
   config.error_notification_class = 'alert alert-error'
-=======
   config.error_notification_class = 'error_notification'
->>>>>>> origin/master
 
   # ID to add for error notification helper.
   # config.error_notification_id = nil
@@ -117,16 +114,13 @@ SimpleForm.setup do |config|
   # Whether attributes are required by default (or not). Default is true.
   # config.required_by_default = true
 
-<<<<<<< HEAD
   # Tell browsers whether to use default HTML5 validations (novalidate option).
   # Default is enabled.
-=======
   # Tell browsers whether to use the native HTML5 validations (novalidate form option).
   # These validations are enabled in SimpleForm's internal config but disabled by default
   # in this configuration, which is recommended due to some quirks from different browsers.
   # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
   # change this configuration to true.
->>>>>>> origin/master
   config.browser_validations = false
 
   # Collection of methods to detect if a file type was given.

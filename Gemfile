@@ -17,19 +17,12 @@ gem 'rails', '4.2.0'
   gem 'jbuilder', '~> 2.0'
   gem "carrierwave"
   gem "nested_form"
-   gem "jquery-fileupload-rails"
+  gem "jquery-fileupload-rails"
   gem 'pg'
 gem 'simple_form'
 gem 'jquery-rails'
 gem "ransack"
-<<<<<<< HEAD
-<<<<<<< HEAD
 gem 'thin'
-group :production do
-  gem 'pg', '0.15.1'
-
-=======
-=======
 gem 'kristin'
 gem 'nokogiri'
 gem 'listen', '~> 2.7'
@@ -38,7 +31,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 #gem 'spring',        group: :development
->>>>>>> origin/master
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -53,7 +45,6 @@ end
 
 group :production do
   gem 'rails_12factor'
->>>>>>> origin/master
 end
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
