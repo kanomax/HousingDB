@@ -1,6 +1,6 @@
 require 'carrierwave/processing/mime_types'
 
-class HousefileUploader < CarrierWave::Uploader::Base
+class HouseUploader < CarrierWave::Uploader::Base
 include CarrierWave::Compatibility::Paperclip
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -12,10 +12,11 @@ include CarrierWave::Compatibility::Paperclip
   process :set_content_type
   process :save_content_type_and_size_in_model  
 
+  
 
   def save_content_type_and_size_in_model
-    model.file_content_type = content_type if file.content_type
-    model.file_size = file.size
+    model.houseimg_content_type = content_type if file.content_type
+    model.houseimg_file_size = file.size
   end
   
   # Choose what kind of storage to use for this uploader:

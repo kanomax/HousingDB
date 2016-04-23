@@ -13,8 +13,6 @@
 
 //= require jquery
 //= require jquery_ujs
-//= require_tree .
-//= require bootstrap
 //= require jquery_nested_form
 //= require jquery-fileupload
 //= require bootstrap
@@ -156,4 +154,3 @@ var rowBuilder = function() {
         link: link
     };
 }();
-

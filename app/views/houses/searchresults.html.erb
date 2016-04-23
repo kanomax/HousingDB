@@ -1,7 +1,7 @@
 <h1>Search Results</h1>
 
 <%= form_tag houses_show_multiple_path, :method => 'get' do %>
-<table class="table table-striped table-condensed">
+<table class="table table-striped">
   <thead>
     <tr>
       <th></th>
@@ -38,11 +38,7 @@
    	<td><%= house.year %></td>
     <td>	
     	<%= link_to 'Show', house, :class => 'btn btn-xs btn-primary' %>
-<<<<<<< HEAD
-    	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-warning btn-xs'%>
-=======
     	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-xs btn-default'%>
->>>>>>> origin/master
     	<%= link_to 'Destroy', house, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
   	</td>
   </tr>
@@ -50,7 +46,7 @@
   </tbody>
 </table>
 
-<div class="container">
+<div class="form-actions">
 	<%= submit_tag "View Checked", :class => 'btn btn-primary' %>
 	
 <% end %>
@@ -58,5 +54,4 @@
 <%= link_to 'Back to Search', houses_search_path, :class => 'btn btn-default' %>
 <%= link_to 'Back to Home', houses_path, :class => 'btn btn-default' %>
 </div>
-
 <br />
