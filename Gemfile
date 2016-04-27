@@ -29,7 +29,7 @@ gem 'listen', '~> 2.7'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'sdoc', '~> 0.4.0', group: :doc
 
-gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem 'spring',        group: :development
 
 group :development, :test do
