@@ -70,8 +70,8 @@
 <%= link_to 'Edit House', edit_house_path(@house) %> | 
 <%= link_to 'Delete House', @house, confirm: 'Are you sure?', method: :delete %> <br \>
 
-<%= link_to 'Add Attachments', addattach_house_path(@house) %> |
-<%= link_to 'Edit Attachment', editattach_house_path(@house) %> <br \>
+<%= link_to 'Add Attachments', new_house_housefile_path(@house) %> |
+<%= link_to 'View Attachments', house_housefiles_path(@house) %> <br \>
 
 <%= link_to 'Show Listing Information', house_listings_path(@house) %> |
 <%= link_to 'Add Listing Information', new_house_listing_path(@house) %> <br \>

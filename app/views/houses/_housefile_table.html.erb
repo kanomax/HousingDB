@@ -6,7 +6,7 @@
   <th></th>
   </thead>
   <tbody>
-    <%= f.fields_for(:housefiles) do |file_form| %>
+    <%= f.simple_fields_for(:housefiles) do |file_form| %>
       <tr class="fields">
       	<% if file_form.object.file?%>
       	<td><% if file_form.object.file_content_type.exclude? "image"%>

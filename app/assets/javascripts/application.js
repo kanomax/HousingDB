@@ -15,7 +15,7 @@
 //= require jquery_ujs
 //= require jquery_nested_form
 //= require jquery-fileupload
-//= require bootstrap
+//= require bootstrap-sprockets
 //= require turbolinks
 //= require_tree .
 
@@ -50,7 +50,7 @@ function add_fields(link, association, content) {
     var new_id = new Date().getTime();
     var regex = new RegExp("new_" + association, "g");
     $(link).parent().after(content.replace(regex, new_id));
-    $('#new-housefile-fields').modal('show');
+    jQuery('#new-housefile-fields').modal('show');
 }
 
 var housefileFieldsUI = {

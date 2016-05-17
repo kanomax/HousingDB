@@ -16,7 +16,7 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # index.html.erb
       format.json { render json: @house }
     end
   end
@@ -27,7 +27,7 @@ class HousesController < ApplicationController
     @house = House.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html # new.html.erb.erb
       format.json { render json: @house }
     end
   end
@@ -107,7 +107,7 @@ class HousesController < ApplicationController
   def statusupdate
     @house = House.find(params[:id])
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # index.html.erb
       format.json { render json: @house }
     end
   end
@@ -117,9 +117,7 @@ class HousesController < ApplicationController
   end
 
   def addattach
-    @housefiles = Housefile.all
     @house = House.find(params[:id])
-    @house.housefiles.build
 
   end
 
