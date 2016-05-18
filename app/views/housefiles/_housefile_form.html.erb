@@ -1,0 +1,9 @@
+<%= simple_form_for([@house,@housefile], :html => {:class => "form-horizontal"}) do |f| %>
+
+    <fieldset>
+      <%= f.file_field(:file, class: "field", multiple: true) %>
+<br />
+      <%= f.submit "Add Attachment", :class => 'btn btn-primary' %>
+      <%= link_to 'Back to House', house_path(@house), class: "btn btn-danger" %>
+<% end %>
+</fieldset>
