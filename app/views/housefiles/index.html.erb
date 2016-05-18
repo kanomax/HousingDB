@@ -10,7 +10,12 @@
   <tr class="nested-fields">
     <% @housefiles.each do |h| %>
         <td>    <%= link_to image_url(h.file.url) do %>
-              <%= image_tag(h.file.thumb) if h.file? %><% end %></td>
+              <% if h.file_content_type = "application/pdf" %>
+                  <%= image_tag(h.file.thumb_pdf) if h.file? %>
+              <% else %>
+                  <%= image_tag(h.file.thumb) if h.file? %>
+              <% end %>
+          <% end %></td>
         <td><%= h.file_name %></td>
         <td><%= h.created_at %></td>
         <td><%= h.updated_at %></td>

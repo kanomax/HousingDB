@@ -37,6 +37,9 @@ var cfg2 = {
     }
 };
 
+
+
+
 function select_agent_fields() {
 	$('#new-agent-fields').modal('show');
 }
