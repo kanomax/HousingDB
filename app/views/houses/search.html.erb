@@ -25,15 +25,15 @@
     <!-- <%= f.label :county_cont, "County", :class => 'label label-default'%><br /> -->
     <%= f.input :county_cont %><br /><br />
     
-        <!-- <%= f.label :parcel_id_cont, "Parcel ID", :class => 'label label-default'%><br /> -->
-    <%= f.input :parcel_id_cont %><br /><br />
+        <!-- <%= f.label :parcel_id_eq, "Parcel ID", :class => 'label label-default'%><br /> -->
+    <%= f.input :parcel_id_eq %><br /><br />
     
     <!-- <%= f.label :style_eq, "Style", :class => 'label label-default'%><br /> -->
-    <%= f.input :style_eq, collection: [["One Story"],["1.5 Story"], ["Two Story"], ["Three Story"], ["Split Story"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
+    <%= f.input :style_eq, collection: ["One Story","1.5 Story", "Two Story", "Three Story", "Split Story", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
     
     <!-- <%= f.label :garagestalls_eq, "Garage Stalls", :class => 'label label-default' %><br /> -->
-    <%= f.input :garagestalls_eq, collection: [["0"],["1 Attached"],["1 Detached"], ["2 Attached"], ["1 Detached"], ["3 Attached"], ["3 Detached"],["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br /> 
-       <%= f.label :concretedrive_true, "Sprinklers", :class => 'control-label' %><br />
+    <%= f.input :garagestalls_eq, collection: ["0","1 Attached","1 Detached", "2 Attached", "1 Detached", "3 Attached", "3 Detached","Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
+       <%= f.label :concretedrive_true, "Concrete Drive", :class => 'control-label' %><br />
     <%= f.select :concretedrive_true,[['Yes', 1], ['No', 0]],{include_blank: 'All'},{class: 'form-control'} %>    
    
    
@@ -47,20 +47,20 @@
     <%= f.input :woodstoves_eq, collection: (0..4), :include_blank => true, :class =>'btn-lg'%><br /><br /> 
     
     <!-- <%= f.label :heating_eq, "Heating", :class => 'label label-default'%><br /> -->
-    <%= f.input :heating_eq, collection: [["FWA"],["Heat Pump"], ["Baseboard"], ["Radiator"], ["Geothermal"], ["None"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
+    <%= f.input :heating_eq, collection: ["FWA","Heat Pump", "Baseboard", "Radiator", "Geothermal", "None", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
    
    <!-- <%= f.label :cooling_eq, "Cooling", :class => 'label label-default'%><br /> -->
-   <%= f.input :cooling_eq, collection: [["CA"],["Window"], ["Heat Pump"], ["Geothermal"], ["None"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br /> 
+   <%= f.input :cooling_eq, collection: ["CA","Window", "Heat Pump", "Geothermal", "None", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
    
     <!-- <%= f.label :siding_eq, "Siding", :class => 'label label-default'%><br /> -->
-   <%= f.input :siding_eq, collection: [["None"],["Wood"], ["Hardwood"], ["Vinyl"], ["Permanent"], ["Brick"], ["Masonry"], ["Metal"], ["Cement Board"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />  
+   <%= f.input :siding_eq, collection: ["None","Wood", "Hardwood", "Vinyl", "Permanent", "Brick", "Masonry", "Metal", "Cement Board", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
    
    <!-- <%= f.label :condtion_eq, "Condition", :class => 'label label-default'%><br /> -->
-   <%= f.input :condition_eq, collection: [["C1"],["C2"], ["C3"], ["C4"], ["C5"], ["C6"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />    
+   <%= f.input :condition_eq, collection: ["C1","C2", "C3", "C4", "C5", "C6", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
    
-   <!-- <%= f.label :condtion_eq, "Quality", :class => 'label label-default'%><br /> -->
-   <%= f.input :condition_eq, collection: [["Q1"],["Q2"], ["Q3"], ["Q4"], ["Q5"], ["Q6"], ["Other"]], :include_blank => 'All', :class =>'btn-lg'%><br /><br />  
-   <%= f.label :sprinklers_true, "Concrete Drive", :class => 'control-label' %><br />
+   <!-- <%= f.label :quality_eq, "Quality", :class => 'label label-default'%><br /> -->
+   <%= f.input :quality_eq, collection: ["Q1","Q2", "Q3", "Q4", "Q5", "Q6", "Other"], :include_blank => 'All', :class =>'btn-lg'%><br /><br />
+   <%= f.label :sprinklers_eq, "Underground Sprinklers", :class => 'control-label' %><br />
     <%= f.select :sprinklers_true,[['Yes', 1], ['No', 0]],{include_blank: 'All'},{class: 'form-control'} %>
     </div>
     </div>
@@ -98,9 +98,9 @@
     
     <div class="form-inline">  
     <%= f.label :year_gteq, "Year Range", :class => 'control-label' %><br />
-    <%= f.input :year_gteq, :label => false, collection: (1920..Time.now.year), :include_blank => true, :class =>'btn-lg'%>
+    <%= f.input :year_gteq, :label => false, collection: (1850..Time.now.year), :include_blank => true, :class =>'btn-lg'%>
     <%= f.label :year_lteq, "through", :class => 'label label-info' %>
-    <%= f.input :year_lteq, :label => false, collection: (1920..Time.now.year), :include_blank => true, :class =>'btn-lg'%> <br /><br />
+    <%= f.input :year_lteq, :label => false, collection: (1850..Time.now.year), :include_blank => true, :class =>'btn-lg'%> <br /><br />
     </div>
     
     <div class="form-inline">  
