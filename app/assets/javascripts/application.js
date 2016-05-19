@@ -110,7 +110,7 @@ var formHandler = {
 var selectformHandler = {
     appendFields: function() {
         var inputFields = $('#agent_attributes_name');
-		inputFields.html($('input:radio:checked').parent('label').text());
+		inputFields.val($('input:radio:checked').parent('label').text());
     },
  
     // Public method for hiding the data entry fields.

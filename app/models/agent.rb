@@ -1,5 +1,5 @@
 class Agent < ActiveRecord::Base
-belongs_to :listing
+has_many :listing
 has_many :sales
 
 validates_presence_of :name

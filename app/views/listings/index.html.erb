@@ -16,24 +16,14 @@
     	<th><% unless list.agent_id.nil? %>
     		<%= Agent.find(list.agent_id).name%>
     		<% end %>
-    	</th>    	
-<<<<<<< HEAD
+    	</th>
 <th>    
         <%= link_to 'Modify Agent', agentadd_listing_path(list), :class => 'btn btn-xs btn-primary' %>	
-    	<%= link_to 'Edit', edit_listing_path(list), :class => 'btn btn-warning btn-xs' %>
+    	<%= link_to 'Edit', edit_house_listing_path(@house,list), :class => 'btn btn-warning btn-xs' %>
     	<%= link_to 'Destroy', list, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
-=======
-    	<th>    	
-    	<!--<%= link_to 'Edit', edit_listing_path(list), :class => 'btn btn-mini' %> //-->
-<<<<<<< HEAD
-    	<%= link_to 'Destroy', list, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-mini btn-danger' %>
->>>>>>> origin/master
-=======
-    	<%= link_to 'Destroy', list, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
->>>>>>> origin/master
     	</th>
 </tr>
 <% end %>
 </tbody>
 </table>
-<%= link_to 'Back to House', house_path(@house.id)%>
+<%= link_to 'Back to House', house_path(@house)%>

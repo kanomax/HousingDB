@@ -1,6 +1,6 @@
 class Listing < ActiveRecord::Base
 belongs_to :house
-  has_one :agent
+belongs_to :agent
   
   validates :house_id, :listingdate, :listingprice, :presence => true
     validates_numericality_of :listingprice, :greater_than_or_equal_to => 0

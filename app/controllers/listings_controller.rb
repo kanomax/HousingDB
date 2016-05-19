@@ -27,7 +27,7 @@ class ListingsController < ApplicationController
   
    else    
     flash[:notice] = "Listing Information was successfully added."
-    redirect_to house_path(@house)
+    redirect_to house_listings_path(@house)
   end
       else
  render action: "new"
@@ -46,10 +46,10 @@ class ListingsController < ApplicationController
     respond_to do |format|
       ad_params = params.require(:listing).permit!
       if @listing.update_attributes(ad_params) and params[:param1] == nil
-        format.html { redirect_to root_path, notice: 'Agent was successfully updated.' }
+        format.html { redirect_to house_listings_path(@house), notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else
-        format.html { render action: "agentadd" }
+        format.html { render edit_house_listing_path(@house,@listing) }
         format.json { render json: @listing.errors, status: :unprocessable_entity }
       end
     end
@@ -57,10 +57,28 @@ class ListingsController < ApplicationController
   
  def new 
 @listing = Listing.new
+@agentname = "No Agent"
  end
- 
+ def edit
+ @listing = Listing.find(params[:id])
+   if @listing.agent.nil?
+     @agentname = "No Agent"
+   else
+     @agentname = @listing.agent.name
+   end
+ end
  def index
    @search = Listing.search(:house_id_eq => params[:house_id])
        @listings = @search.result
  end
+
+ def destroy
+   @house = Listing.find(params[:id])
+   @house.destroy
+
+   respond_to do |format|
+     format.html { redirect_to house_listings_path(@house) }
+     format.json { head :no_content }
+   end
+end
 end
