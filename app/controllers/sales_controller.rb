@@ -41,10 +41,16 @@ before_filter :get_house
  def new 
 @sale = Sale.new
  @sale.build_agent
+   @agentname = "No Agent"
  end
  
  def edit
     @sale = Sale.find(params[:id])
+    if @sale.agent.nil?
+      @agentname = "No Agent"
+    else
+      @agentname = @sale.agent.name
+    end
  end
 
  def index
@@ -62,7 +68,7 @@ before_filter :get_house
      @sale.build_agent
 
     respond_to do |format|
-      ad_params = params.require(:sake).permit!
+      ad_params = params.require(:sale).permit!
       if @sale.update_attributes(ad_params)
         format.html { redirect_to house_sales_path(@sale.house_id), notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
@@ -78,7 +84,7 @@ before_filter :get_house
     @sale.destroy
 
     respond_to do |format|
-      format.html { redirect_to root_path }
+      format.html { redirect_to house_sales_path(@house) }
       format.json { head :no_content }
     end
   end

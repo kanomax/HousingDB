@@ -3,11 +3,11 @@
 <%= f.error_notification %>
 <h1>Select Agent</h1>
 <div class="form-actions">
-<div class="radio controls">
-  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name %><br /><br />
+<div class="radio">
+  <%= f.collection_radio_buttons :agent_id, Agent.all, :id, :name,item_wrapper_tag: :div, item_wrapper_class: :radio %><br />
   </div>
   
 
-<%= f.button :submit, "Add Agent", class: "btn btn-primary" %>
+<%= f.button :submit, "Select Agent", class: "btn btn-primary" %>
 </div>
 <% end %>
