@@ -1,5 +1,4 @@
 <h1>Search Results</h1>
-
 <%= form_tag houses_show_multiple_path, :method => 'get' do %>
 <table class="table table-striped">
   <thead>
@@ -16,7 +15,7 @@
       <th><%= sort_link(@search, :bedrooms, "Bedroom") %></th>
       <th><%= sort_link(@search, :bathrooms, "Bathrooms") %></th>
       <th><%= sort_link(@search, :style, "Style") %></th>
-      <th><%= sort_link(@search, :year, "Year") %></th>
+      <th><%= sort_link(@search, :year, "Year Built") %></th>
       <th><%= sort_link(@search, :garagestalls, "Garages") %></th>
     </tr>
   </thead>
@@ -30,7 +29,7 @@
 	<td><%= house.city %></td>
     <td><%= house.county %></td>
     <td><%= house.status %></td>
-    <td> <%= number_to_currency(house.currentprice) %></td>
+    <td><span data-toggle="tooltip" data-placement="bottom" title="<%= house.get_last_agent %>"> <%= number_to_currency(house.currentprice) %></span></td>
     <td><%= number_with_delimiter(house.lotsize) %></td>
     <td><%= number_with_delimiter(house.squarefeet) %></td>
     <td><%= house.bedrooms %></td>
@@ -39,9 +38,9 @@
    	<td><%= house.year %></td>
     <td><%= house.garagestalls %></td>
     <td>	
-    	<%= link_to 'Show', house, :class => 'btn btn-xs btn-primary' %>
-    	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-xs btn-default'%>
-    	<%= link_to 'Destroy', house, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger' %>
+    	<%= link_to 'Show', house, :class => 'btn btn-xs btn-primary btn-block' %>
+    	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-xs btn-default btn-block'%>
+    	<%= link_to 'Destroy', house, confirm: 'Are you sure?', method: :delete, :class => 'btn btn-xs btn-danger btn-block' %>
   	</td>
   </tr>
 <% end %>
@@ -56,4 +55,3 @@
 <%= link_to 'Back to Search', houses_search_path, :class => 'btn btn-default' %>
 <%= link_to 'Back to Home', houses_path, :class => 'btn btn-default' %>
 </div>
-<br />
