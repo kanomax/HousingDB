@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     get "houses/searchresults"
     get "houses/search"
     get "houses/pdfconverter"
+    get "houses/:id/salesandlistings", to: "mixed#salesandlistings", as: "houses_salesandlistings"
   resources :housefiles  
   resources :houses do
     resources :listings

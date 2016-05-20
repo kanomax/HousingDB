@@ -1,0 +1,28 @@
+<h1>Posted Information</h1>
+<table class="table table-striped">
+  <thead>
+  <tr>
+    <th>Posted Type</th>
+    <th>Price</th>
+    <th>Date</th>
+    <th>Agent</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <% @postings.each do |posting| %>
+      <tr>
+        <th><%= posting.type %></th>
+        <th><%= number_to_currency(posting.price) %></th>
+        <th><%= posting.date.strftime("%m/%d/%Y") %></th>
+        <th><%= posting.agent %></th>
+
+        <th>
+
+        </th>
+
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+<%= link_to 'Back to House', house_path(params[:id])%>

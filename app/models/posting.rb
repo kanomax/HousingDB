@@ -1,0 +1,1 @@
+class Posting < Struct.new :type, :price, :date, :agent ; end

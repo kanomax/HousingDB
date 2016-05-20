@@ -8,8 +8,6 @@
       <th><%= sort_link(@search, :houseimg, "")%></th>
    	  <th><%= sort_link(@search, :address, "Address") %></th>
       <th><%= sort_link(@search, :city, "City") %></th>
-      <th><%= sort_link(@search, :state, "State") %></th>
-      <th><%= sort_link(@search, :zipcode, "Zip Code") %></th>
       <th><%= sort_link(@search, :county, "County") %></th>
       <th><%= sort_link(@search, :status, "Status") %></th>
       <th><%= sort_link(@search, :currentprice, "Price") %></th>
@@ -19,6 +17,7 @@
       <th><%= sort_link(@search, :bathrooms, "Bathrooms") %></th>
       <th><%= sort_link(@search, :style, "Style") %></th>
       <th><%= sort_link(@search, :year, "Year") %></th>
+      <th><%= sort_link(@search, :garagestalls, "Garages") %></th>
     </tr>
   </thead>
   <tbody>
@@ -29,8 +28,6 @@
     <td><%= image_tag house.houseimg_url(:thumb) %></td>
     <td><%= house.address %></td>
 	<td><%= house.city %></td>
-    <td><%= house.state %></td>
-    <td><%= house.zipcode %></td>
     <td><%= house.county %></td>
     <td><%= house.status %></td>
     <td> <%= number_to_currency(house.currentprice) %></td>
@@ -40,6 +37,7 @@
     <td><%= house.bathrooms %></td>
    	<td><%= house.style %></td>
    	<td><%= house.year %></td>
+    <td><%= house.garagestalls %></td>
     <td>	
     	<%= link_to 'Show', house, :class => 'btn btn-xs btn-primary' %>
     	<%= link_to 'Edit', edit_house_path(house), :class => 'btn btn-xs btn-default'%>

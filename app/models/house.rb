@@ -14,4 +14,23 @@ mount_uploader :houseimg, HouseUploader, :mount_on => :houseimg_file_name
     self.status ||= 'Unknown'
   end
 
+  def get_last_agent
+    if self.status == "Sold"
+      if self.sales.order(:saledate).last.agent.nil?
+        return "No Agent"
+      else
+        return self.sales.order(:saledate).last.agent.name
+      end
+    end
+    if self.status == "Listed"
+      if self.listings.order(:listingdate).last.agent.nil?
+        return "No Agent"
+      else
+        return self.listings.order(:listingdate).last.agent.name
+      end
+    end
+    if self.status == "Listed"
+      return "No Agent"
+    end
+  end
 end
