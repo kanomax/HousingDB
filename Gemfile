@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-ruby "2.1.5"
+ruby "2.1.8"
 gem 'rails', '4.2.0'
 
 # Bundle edge Rails instead:
@@ -10,6 +10,7 @@ gem 'rails', '4.2.0'
   gem 'sass-rails',   '~> 5.0'
   gem 'uglifier', '>= 1.3.0'
   gem 'coffee-rails', '~> 4.1.0'
+  gem 'coffee-script-source', '1.8.0'
   gem "mini_magick"
   gem 'turbolinks'
   gem 'therubyracer', :platforms => :ruby
@@ -23,7 +24,7 @@ gem 'simple_form'
 gem 'jquery-rails'
 gem "ransack"
 gem 'thin'
-gem 'kristin'
+#gem 'kristin'
 gem 'nokogiri'
 gem 'listen', '~> 2.7'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
