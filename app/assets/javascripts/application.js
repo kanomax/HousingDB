@@ -36,12 +36,40 @@ var cfg2 = {
         return this.tableId + ' tbody';
     }
 };
-ready = function() {
+var housefileFieldsUI = {
+    init: function () {
+        $('#addButton').on('click', function () {
+            formHandler.appendFields();
+            formHandler.hideForm();
+        });
+        $('#cancelButton').on('click', function () {
+            formHandler.hideForm();
+        });
+        $('#closeButton').on('click', function () {
+            formHandler.hideForm();
+        });
+    }
+};
 
+var selectFieldsUI = {
+    init: function () {
+        $('#addButton').on('click', function () {
+            selectformHandler.appendFields();
+            selectformHandler.hideForm();
+        });
+        $('#cancelButton').on('click', function () {
+            selectformHandler.hideForm();
+        });
+        $('#closeButton').on('click', function () {
+            selectformHandler.hideForm();
+        });
+    }
+};
+ready = function() {
     $(function () {
         $('[data-toggle="tooltip"]').tooltip();
     });
-
+};
     function select_agent_fields() {
         $('#new-agent-fields').modal('show');
     }
@@ -58,35 +86,7 @@ ready = function() {
         jQuery('#new-housefile-fields').modal('show');
     }
 
-    var housefileFieldsUI = {
-        init: function () {
-            $('#addButton').on('click', function () {
-                formHandler.appendFields();
-                formHandler.hideForm();
-            });
-            $('#cancelButton').on('click', function () {
-                formHandler.hideForm();
-            });
-            $('#closeButton').on('click', function () {
-                formHandler.hideForm();
-            });
-        }
-    };
 
-    var selectFieldsUI = {
-        init: function () {
-            $('#addButton').on('click', function () {
-                selectformHandler.appendFields();
-                selectformHandler.hideForm();
-            });
-            $('#cancelButton').on('click', function () {
-                selectformHandler.hideForm();
-            });
-            $('#closeButton').on('click', function () {
-                selectformHandler.hideForm();
-            });
-        }
-    };
 
 
     var formHandler = {
@@ -159,6 +159,6 @@ ready = function() {
             link: link
         };
     }();
-};
+
 $(document).ready(ready);
 $(document).on('page:load', ready);
