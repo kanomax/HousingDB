@@ -10,7 +10,7 @@
       <b>Status:</b>
   <%= @house.status %><br \>
        <b>Price:</b>
-  <%= @house.currentprice %><br \>
+  <span data-toggle="tooltip" data-placement="bottom" title="<%= @house.get_last_agent %>"><%= @house.currentprice %><br \></span>
   <b>Lot Size (Sq. Ft.):</b>
   <%= @house.lotsize %><br \>
   <b>Total GLA (Sq. Ft.):</b>

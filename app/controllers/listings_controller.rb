@@ -15,13 +15,7 @@ class ListingsController < ApplicationController
   ad_params = params.require(:listing).permit!
  @listing = @house.listings.new(ad_params)
   if @listing.save
-   if @listing.listingdate >= @house.listings.order('listingdate DESC').first.listingdate
-    if @house.sales.order('saledate DESC').first == nil
-      @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
-    elsif @listing.listingdate > @house.sales.order('saledate DESC').first.saledate
-      @house.update_attributes(:currentprice => @listing.listingprice, :status => 'Listed')
-    end    
-   end
+    @listing.update_house(@house)
    if params[:agentsubmit]
     redirect_to agentadd_listing_path(@listing)
   
@@ -42,10 +36,11 @@ class ListingsController < ApplicationController
   
     def update
     @listing = Listing.find(params[:id])
-
+    @house = House.find(@listing.house_id)
     respond_to do |format|
       ad_params = params.require(:listing).permit!
       if @listing.update_attributes(ad_params) and params[:param1] == nil
+        @listing.update_house(@house)
         format.html { redirect_to house_listings_path(@house), notice: 'Agent was successfully updated.' }
         format.json { head :no_content }
       else

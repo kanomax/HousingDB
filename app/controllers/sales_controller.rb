@@ -59,7 +59,7 @@ before_filter :get_house
   
   def update
     @sale = Sale.find(params[:id])
-     @sale.build_agent
+     # @sale.build_agent
     @house = House.find(@sale.house_id)
     respond_to do |format|
       ad_params = params.require(:sale).permit!
