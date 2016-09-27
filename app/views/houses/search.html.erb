@@ -1,8 +1,7 @@
- <div class ="container">
-<div class="col-md-6 col-md-offset-4">
-<h1>Search Houses</h1>
-</div>
-</div>
+
+
+  <div class="page-header"><h1 class="text-center">Search Houses</h1></div>
+
 <br />
 
 <%= search_form_for @search, :builder => SimpleForm::FormBuilder, :url => houses_searchresults_path, :validate => true do |f| %>

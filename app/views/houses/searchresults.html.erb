@@ -1,4 +1,4 @@
-<h1>Search Results</h1>
+<div class="page-header"><h1 class="text-center">Search Results</h1></div>
 <%= form_tag houses_show_multiple_path, :method => 'get' do %>
 <table class="table table-striped">
   <thead>
@@ -24,7 +24,7 @@
 <% @houses.each do |house| %>
 	<tr>
 	<td><%= check_box_tag "house_ids[]", house.id %></td>
-    <td><%= image_tag house.houseimg_url(:thumb) %></td>
+    <td><%= link_to image_tag(house.houseimg_url(:thumb)),house.houseimg_url, data:{ title:house.address, toggle:'lightbox'} %></td>
     <td><%= house.address %></td>
 	<td><%= house.city %></td>
     <td><%= house.county %></td>

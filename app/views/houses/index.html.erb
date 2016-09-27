@@ -1,11 +1,18 @@
-<h1>Welcome Page</h1>
+<div class="page-header"><h1 class="text-center">Housing Database</h1></div>
+<div class="btn-toolbar" role = "toolbar">
+<div class="text-center">
+<div class="btn-group-vertical" role="group" aria-label="...">
+<%= link_to 'Search Residential Housing', houses_search_path, class: "btn btn-primary btn-lg btn-block"%>
+<%= link_to 'View All Residential Housing Listings', houses_viewall_path, class: "btn btn-primary btn-lg btn-block"%>
+<%= link_to 'Create New Residential House', new_house_path, class: "btn btn-primary btn-lg btn-block" %>
+  </div>
+  </div>
 
-<%= link_to 'Search Residential Housing', houses_search_path%>
-<br />
-<%= link_to 'View All Residential Housing Listings', houses_viewall_path%>
-<br />
-<%= link_to 'Create New Residential House', new_house_path %>
 <br /><br />
-<%= link_to 'Add An Agent', new_agent_path%>
-<br />
-<%= link_to 'View All Agents', agents_path, id: "viewall"%>
+<div class="text-center">
+  <div class="btn-group-vertical" role="group" aria-label="...">
+    <%= link_to 'Add An Agent', new_agent_path, class: "btn btn-primary btn-lg btn-block"%>
+    <%= link_to 'View All Agents', agents_path, id: "viewall", class: "btn btn-primary btn-lg btn-block"%>
+  </div>
+</div>
+</div>

@@ -17,6 +17,7 @@
 //= require jquery-fileupload
 //= require bootstrap-sprockets
 //= require turbolinks
+//= require lightbox-bootstrap
 //= require_tree .
 
 

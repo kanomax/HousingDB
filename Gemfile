@@ -15,6 +15,7 @@ gem 'rails', '4.2.0'
   gem 'turbolinks'
   gem 'therubyracer', :platforms => :ruby
   gem "bootstrap-sass"
+  gem "bootswatch-rails"
   gem 'jbuilder', '~> 2.0'
   gem "carrierwave"
   gem "nested_form"
@@ -26,6 +27,7 @@ gem "ransack"
 gem 'thin'
 #gem 'kristin'
 gem 'nokogiri'
+gem 'lightbox-bootstrap-rails'
 gem 'listen', '~> 2.7'
 gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'sdoc', '~> 0.4.0', group: :doc
