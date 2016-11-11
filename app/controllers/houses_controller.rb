@@ -1,4 +1,5 @@
 class HousesController < ApplicationController
+  require 'csvparser'
   # GET /houses
   # GET /houses.json
   def index
@@ -13,6 +14,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
+
     @house = House.find(params[:id])
 
     respond_to do |format|
@@ -24,7 +26,9 @@ class HousesController < ApplicationController
   # GET /houses/new
   # GET /houses/new.json
   def new
-    @house = House.new
+    csvparse = CsvParser.new "#{Rails.root}/public/uploads/report (5).csv"
+    csvparse.run
+    @house = csvparse.gethouse
 
     respond_to do |format|
       format.html # new.html.erb.erb
@@ -45,7 +49,16 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.save
-        format.html { redirect_to @house, notice: "House was successfully created."}
+        case params[:commit].to_s
+          when "Create House and Add Sales"
+            format.html { redirect_to new_house_sale_path(@house), notice: "House was successfully created."}
+          when "Create House and Add Listings"
+            format.html { redirect_to new_house_listing_path(@house), notice: "House was successfully created."}
+          else
+            format.html { redirect_to @house, notice: "House was successfully created."}
+
+        end
+
       #   format.json { render json: @house, status: :created, location: @house }
       else
         format.html { render action: "new" }
