@@ -65,7 +65,15 @@ class CsvParser
               @house.state = state
               @house.zipcode = (city + ", " + state).to_zip
           end
-
+        when "Lot Width x Depth"
+          if @house.county == "Saline"
+            unless value.nil?
+              value = value.split('x')
+              int1 = value[0].to_i
+              int2 = value[1].to_i
+              @house.lotsize = int1 * int2
+            end
+          end
         when "Lot Size:"
           value = value.split
           @house.lotsize = value[0].to_i
@@ -190,10 +198,38 @@ class CsvParser
               @house.basementsffinish = value[0].gsub!(',','') || value[0]
             end
           when "Garage:","Garage Type"
-            case value
-              when "Attached Garage (SF)","ATTACHED"
-                @house.garagestalls = "1 Attached"
+            unless value.nil?
+              garagestalls = ""
+              case value
+                when "Attached Garage (SF)","ATTACHED"
+                  garagestalls = "Attached"
+              end
+              if @house.garagestalls.nil?
+                @house.garagestalls = garagestalls
+              else
+                @house.garagestalls = @house.garagestalls + " " + garagestalls
+              end
             end
+          when "Garage Size:","Garage Area"
+           if value.nil? and !@house.garagestalls.nil?
+             @house.garagestalls = "1 " + @house.garagestalls
+           elsif !value.nil?
+             value = value.split
+             value = value[0].to_i
+             if value > 875
+               garagenumber = "3"
+             elsif value.between?(551, 875)
+               garagenumber = "2"
+             else
+               garagenumber = "1"
+             end
+             if @house.garagestalls.nil?
+               @house.garagestalls = garagenumber
+             else
+               @house.garagestalls = garagenumber + " " + @house.garagestalls
+             end
+           end
+
         end
       end
     end
@@ -314,9 +350,36 @@ class CsvParser
               @house.basementsffinish = value[0].gsub!(',','') || value[0]
             end
           when "Garage:","Garage Type"
-            case value
-              when "Attached Garage (SF)","ATTACHED"
-                @house.garagestalls = "1 Attached"
+            unless value.nil?
+              garagestalls = ""
+              case value
+                when "Attached Garage (SF)","ATTACHED"
+                  garagestalls = "Attached"
+              end
+              if @house.garagestalls.nil?
+                @house.garagestalls = garagestalls
+              else
+                @house.garagestalls = @house.garagestalls + " " + garagestalls
+              end
+            end
+          when "Garage Size:","Garage Area"
+            if value.nil? and !@house.garagestalls.nil?
+              @house.garagestalls = "1 " + @house.garagestalls
+            elsif !value.nil?
+              value = value.split
+              value = value[0].to_i
+              if value > 875
+                garagenumber = "3"
+              elsif value.between?(551, 875)
+                garagenumber = "2"
+              else
+                garagenumber = "1"
+              end
+              if @house.garagestalls.nil?
+                @house.garagestalls = garagenumber
+              else
+                @house.garagestalls = garagenumber + " " + @house.garagestalls
+              end
             end
         end
       end

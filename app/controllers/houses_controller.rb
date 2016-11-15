@@ -26,7 +26,7 @@ class HousesController < ApplicationController
   # GET /houses/new
   # GET /houses/new.json
   def new
-    csvparse = CsvParser.new "#{Rails.root}/public/uploads/report (2).csv", "Fillmore"
+    csvparse = CsvParser.new "#{Rails.root}/public/uploads/report (3).csv", "Fillmore"
     csvparse.run
     @house = csvparse.gethouse
 
