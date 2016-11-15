@@ -1,8 +1,11 @@
 class CsvParser
-  def initialize(csvdirectory)
+  def initialize(csvdirectory,county)
     @csvdirectory = csvdirectory
     @house = House.new
+    @house.county = county
+    @house.outbuilding = ""
   end
+
   def run()
     @csvarr = CSV.read(@csvdirectory)
     @csvarr.each_with_index do |x,index |
@@ -21,15 +24,21 @@ class CsvParser
           @propertyclassindex = index
         when "Residential Datasheet"
           @resdataindex = index
-        when "Dwelling Data"
+        when "Dwelling Data","Miscellaneous Improvements"
           @dwellingdataindex = index
+        when "Outbuilding Data"
+          @outbuildingdataindex = index
       end
     end
     self.parcelinfoparser
     self.saleinfoparser
     self.resdataparser
     self.dwellingdataparser
+    unless @outbuildingdataindex.nil?
+      self.outbuildingparser
+    end
   end
+
   def parcelinfoparser
     parcelarr = @csvarr[@parcelindex..@assessedindex]
     parcelarr.each do |x|
@@ -42,20 +51,32 @@ class CsvParser
           @house.address = value.downcase.split(" ").collect{|word| word[0] = word[0].upcase; word}.join(" ")
         when /Legal Description/
           value = value.split
-          city = value[(value.length - 2)].humanize
-          @house.city = city
-          state = value[(value.length - 1)]
-          @house.state = state
-          @house.zipcode = (city + ", " + state).to_zip
+          case @house.county
+            when "Fillmore"
+              city = value[(value.length - 2)].humanize
+              @house.city = city
+              state = value[(value.length - 1)]
+              @house.state = state
+              @house.zipcode = (city + ", " + state).to_zip
+            when "Saline"
+              city = value[0].humanize
+              @house.city = city
+              state = "NE"
+              @house.state = state
+              @house.zipcode = (city + ", " + state).to_zip
+          end
+
         when "Lot Size:"
           value = value.split
           @house.lotsize = value[0].to_i
       end
     end
   end
+
   def saleinfoparser
 
   end
+
   def resdataparser
     resdataarr = @csvarr[@resdataindex..@dwellingdataindex]
     col1 = Array.new
@@ -68,52 +89,81 @@ class CsvParser
       unless x.nil?
         value = x[1]
         case x[0]
-          when "Building Size:"
+          when "Building Size:","Total Area"
             value = value.split
             @house.squarefeet = value[0].gsub!(',','')
-          when "Year Built:"
+          when /Year Built/
             @house.year = value
-          when "Quality:"
-            case value
-              when "Excellent"
-                @house.quality = "Q1"
-              when "Very Good"
-                @house.quality = "Q2"
-              when "Good"
-                @house.quality = "Q3"
-              when "Average"
-                @house.quality = "Q4"
-              when "Fair"
-                @house.quality = "Q5"
-              when "Poor"
-                @house.quality = "Q6"
-              else
-                @house.quality = "Other"
+          when "Quality:","Quality / Condition"
+            case @house.county
+              when "Fillmore"
+                quality = value
+              when "Saline"
+                value  = value.split("/")
+                quality = value[0]
+                condition = value [1]
             end
-          when "Exterior:"
-            if value.include? "Vinyl"
+            unless quality.nil?
+              case quality
+                when /Excellent/
+                  @house.quality = "Q1"
+                when /Very Good/
+                  @house.quality = "Q2"
+                when /Good/
+                  @house.quality = "Q3"
+                when /Average/
+                  @house.quality = "Q4"
+                when /Fair/
+                  @house.quality = "Q5"
+                when /Poor/
+                  @house.quality = "Q6"
+                else
+                  @house.quality = "Other"
+              end
+            end
+            unless condition.nil?
+              case condition
+                when /Excellent/
+                  @house.condition = "C1"
+                when /Very Good/
+                  @house.condition = "C2"
+                when /Good/
+                  @house.condition = "C3"
+                when /Average/
+                  @house.condition = "C4"
+                when /Fair/
+                  @house.condition = "C5"
+                when /Poor/
+                  @house.condition = "C6"
+                else
+                  @house.condition = "Other"
+              end
+            end
+          when "Exterior:","Ext. Wall 1"
+            value = value.downcase
+            if value.include? "vinyl"
               @house.siding = "Vinyl"
-            elsif value.include? "Wood"
+            elsif value.include? "wood"
               @house.siding = "Wood"
-            elsif value.include? "Hardboard"
+            elsif value.include? "hardboard"
               @house.siding = "Hardboard"
-            elsif value.include? "Permanent"
+            elsif value.include? "permanent"
               @house.siding = "Permanent"
-            elsif value.include? "Brick"
+            elsif value.include? "brick"
               @house.siding = "Brick"
-            elsif value.include? "Masonry"
+            elsif value.include? "masonry"
               @house.siding = "Masonry"
-            elsif value.include? "Metal"
+            elsif value.include? "metal"
               @house.siding = "Metal"
-            elsif value.include? "Cement Board"
+            elsif value.include? "cement board"
               @house.siding = "Cement Board"
-            elsif value.include? "Stucco"
+            elsif value.include? "stucco"
               @house.siding = "Stucco"
             else
               @house.siding = "Other"
             end
-          when "Style:"
-            if value.include? "1 Story"
+          when "Style:","Style 1"
+            if value.include? "1 Story" or value.include? "One-Story" or value.include? "One Story"
               @house.style = "One Story"
             elsif value.include? "1 1/2 Story"
               @house.style = "1.5 Story"
@@ -126,20 +176,22 @@ class CsvParser
             else
               @house.style = "Other"
             end
-          when "Bedrooms:"
+          when /Bedrooms/
             @house.bedrooms = value
-          when "Bathrooms:"
+          when /Bathrooms/
             @house.bathrooms = value
           when "Heating/Cooling:"
-          when "Basement Size:"
+          when "Basement Size:","Basement Area"
             value = value.split
             @house.basementsf = value[0].gsub!(',','')
-          when "Min Finish:\nPart Finish:"
-            value = value.split
-            @house.basementsffinish = value[0].gsub!(',','')
-          when "Garage:"
+          when /Min Finish/
+            unless value.nil?
+              value = value.split
+              @house.basementsffinish = value[0].gsub!(',','') || value[0]
+            end
+          when "Garage:","Garage Type"
             case value
-              when "Attached Garage (SF)"
+              when "Attached Garage (SF)","ATTACHED"
                 @house.garagestalls = "1 Attached"
             end
         end
@@ -149,52 +201,81 @@ class CsvParser
       unless x.nil?
         value = x[1]
         case x[0]
-          when "Building Size:"
+          when "Building Size:","Total Area"
             value = value.split
             @house.squarefeet = value[0].gsub!(',','')
-          when "Year Built:"
+          when /Year Built/
             @house.year = value
-          when "Quality:"
-            case value
-              when "Excellent"
-                @house.quality = "Q1"
-              when "Very Good"
-                @house.quality = "Q2"
-              when "Good"
-                @house.quality = "Q3"
-              when "Average"
-                @house.quality = "Q4"
-              when "Fair"
-                @house.quality = "Q5"
-              when "Poor"
-                @house.quality = "Q6"
-              else
-                @house.quality = "Other"
+          when "Quality:","Quality / Condition"
+            case @house.county
+              when "Fillmore"
+                quality = value
+              when "Saline"
+                value  = value.split("/")
+                quality = value[0]
+                condition = value [1]
             end
-          when "Exterior:"
-            if value.include? "Vinyl"
+            unless quality.nil?
+              case quality
+                when /Excellent/
+                  @house.quality = "Q1"
+                when /Very Good/
+                  @house.quality = "Q2"
+                when /Good/
+                  @house.quality = "Q3"
+                when /Average/
+                  @house.quality = "Q4"
+                when /Fair/
+                  @house.quality = "Q5"
+                when /Poor/
+                  @house.quality = "Q6"
+                else
+                  @house.quality = "Other"
+              end
+            end
+            unless condition.nil?
+              case condition
+                when /Excellent/
+                  @house.condition = "C1"
+                when /Very Good/
+                  @house.condition = "C2"
+                when /Good/
+                  @house.condition = "C3"
+                when /Average/
+                  @house.condition = "C4"
+                when /Fair/
+                  @house.condition = "C5"
+                when /Poor/
+                  @house.condition = "C6"
+                else
+                  @house.condition = "Other"
+              end
+            end
+          when "Exterior:","Ext. Wall 1"
+            value = value.downcase
+            if value.include? "vinyl"
               @house.siding = "Vinyl"
-            elsif value.include? "Wood"
-              @house.siding = "Wood"
-            elsif value.include? "Hardboard"
+            elsif value.include? "hardboard"
               @house.siding = "Hardboard"
-            elsif value.include? "Permanent"
+            elsif value.include? "permanent"
               @house.siding = "Permanent"
-            elsif value.include? "Brick"
+            elsif value.include? "brick"
               @house.siding = "Brick"
-            elsif value.include? "Masonry"
+            elsif value.include? "masonry"
               @house.siding = "Masonry"
-            elsif value.include? "Metal"
+            elsif value.include? "metal"
               @house.siding = "Metal"
-            elsif value.include? "Cement Board"
+            elsif value.include? "cement board"
               @house.siding = "Cement Board"
-            elsif value.include? "Stucco"
+            elsif value.include? "stucco"
               @house.siding = "Stucco"
+            elsif value.include? "wood" or value.include? "siding"
+              @house.siding = "Wood"
             else
               @house.siding = "Other"
             end
-          when "Style:"
-            if value.include? "1 Story" or value.include? "One Story"
+          when "Style:","Style 1"
+            if value.include? "1 Story" or value.include? "One Story" or value.include? "One-Story"
               @house.style = "One Story"
             elsif value.include? "1 1/2 Story"
               @house.style = "1.5 Story"
@@ -207,36 +288,87 @@ class CsvParser
             else
               @house.style = "Other"
             end
-          when "Bedrooms:"
+          when /Bedrooms/
             @house.bedrooms = value
-          when "Bathrooms:"
+          when /Bathrooms/
             @house.bathrooms = value
-          when "Heating/Cooling:"
-          when "Basement Size:"
-            value = value.split
-            @house.basementsf = value[0].gsub!(',','')
-          when "Min Finish:\nPart Finish:"
-            value = value.split
-            @house.basementsffinish = value[0].gsub!(',','')
-          when "Garage:"
+          when "Heating/Cooling:","Heat Type"
+            value = value.downcase
             case value
-              when "Attached Garage (SF)"
+              when /radiator/
+                @house.heating = "Radiator"
+              when /heat pump/
+                @house.heating = "Heat Pump"
+                @house.cooling = "Heat Pump"
+              when /floor furnace/
+                @house.heating = "Baseboard"
+            end
+          when "Basement Size:","Basement Area"
+            value = value.split
+            value = value[0].gsub!(',','') || value[0]
+            value = value.gsub('sq.','') || value
+            @house.basementsf = value
+          when /Min Finish/
+            unless value.nil?
+              value = value.split
+              @house.basementsffinish = value[0].gsub!(',','') || value[0]
+            end
+          when "Garage:","Garage Type"
+            case value
+              when "Attached Garage (SF)","ATTACHED"
                 @house.garagestalls = "1 Attached"
             end
         end
       end
     end
   end
+
   def dwellingdataparser
-    dwellingdataarr = @csvarr[@dwellingdataindex..(@csvarr.length - 3)]
-    tempstring = ""
+    if @outbuildingdataindex.nil?
+      dwellingdataarr = @csvarr[@dwellingdataindex..(@csvarr.length - 4)]
+    else
+      dwellingdataarr = @csvarr[@dwellingdataindex..@outbuildingdataindex - 1]
+    end
+
+    genstring = ""
+    buildingstring = ""
     dwellingdataarr.each_with_index do |x,index|
       if index != 0 and index != 1
-        tempstring = tempstring + x[0] + "\n"
+        value = x[0].downcase
+      end
+      unless value.nil?
+        case value
+          when /fire pl/, /firepl/
+            if value.include? "single"
+              @house.fireplaces = 1
+            end
+          when /concrete drive/
+            @house.concretedrive = true
+          when /shed/
+            buildingstring = buildingstring + value + "\n"
+          when /sprklr/, /sprinkler/
+            @house.sprinklers = true
+          else
+            genstring = genstring + value + "\n"
+        end
       end
     end
-    @house.gencomments = tempstring
+    @house.gencomments = genstring
+    @house.outbuilding = @house.outbuilding + buildingstring
   end
+
+  def outbuildingparser
+    outbuildingarr = @csvarr[@outbuildingdataindex..(@csvarr.length - 3)]
+    tempstring = ""
+    outbuildingarr.each_with_index do |x,index|
+      if index != 0 and index != 1
+        value = x[0].downcase
+        tempstring = tempstring + value + "\n"
+      end
+    end
+    @house.outbuilding = @house.outbuilding + tempstring
+  end
+
   def gethouse
     return @house
   end
