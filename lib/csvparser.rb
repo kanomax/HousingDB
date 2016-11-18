@@ -7,7 +7,7 @@ class CsvParser
   end
 
   def run()
-    @csvarr = CSV.read(@csvdirectory)
+    @csvarr = CSV.read("#{Rails.root}/" + @csvdirectory)
     @csvarr.each_with_index do |x,index |
       case x[0]
         when "Parcel Information"

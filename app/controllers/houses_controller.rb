@@ -2,6 +2,7 @@ class HousesController < ApplicationController
   require 'csvparser'
   # GET /houses
   # GET /houses.json
+  @temphouse = nil
   def index
 
     @houses = House.search(params[:search])
@@ -26,9 +27,12 @@ class HousesController < ApplicationController
   # GET /houses/new
   # GET /houses/new.json
   def new
-    csvparse = CsvParser.new "#{Rails.root}/public/uploads/report (3).csv", "Fillmore"
-    csvparse.run
-    @house = csvparse.gethouse
+    @house = House.new
+    unless session[:house_attributes].nil?
+      @house.attributes = session[:house_attributes]
+      session[:house_attributes].clear
+    end
+
 
     respond_to do |format|
       format.html # new.html.erb.erb
@@ -141,78 +145,7 @@ class HousesController < ApplicationController
   end
 
   def pdfconverter
-    doc = Nokogiri::HTML(File.open("C:\\HousingDB\\public\\pdffiles\\report.html"))
-    @tables = doc.search('table')
-    @salearr = Array.new
-    @tables.each do |x|
-      parcels = x.search "[text()*='Parcel ID']"
-      if !parcels.blank?
-      parcel = parcels.first
-      @parcelid = parcel.parent.next_element.text        
-      end
 
-      tempstr = x.at('tr p').text
-      
-      if tempstr == "Sales Information"
-
-
-        trctr = 0
-        arrctr = 0
-        tr = x.search('tr')
-        tr.each do |y|
-          @rowarr = Array.new
-          if trctr > 1  
-            td = y.search('td')
-            td.each do |z|         
-              @rowarr << z.text
-            end
-          end
-          if !@rowarr.empty?
-            @salearr << @rowarr            
-          end
-        trctr = trctr + 1
-        end
-      elsif tempstr == "Residential Building Information"
-          tr = x.search('tr')
-          tr.each do |y|
-            td = y.search('td')
-            td.each do |z|
-              if z.text == "Rooms Above Ground"
-                @ragtext = z.next_element.text            
-              elsif z.text == "Rooms Below Ground"
-                @rbgtext = z.next_element.text                 
-              elsif z.text == "Year Built"
-                @yeartext = z.next_element.text                   
-              elsif z.text == "Style"
-                @styletext = z.next_element.text                 
-              elsif z.text == "Area"
-                @areatext = z.next_element.text                 
-              elsif z.text == "Bathroom #"
-                @bathtext = z.next_element.text                 
-              elsif z.text == "TLA"
-                
-              elsif z.text == "Basement Area"
-                
-              elsif z.text == "Heating"
-              
-              elsif z.text == "Flooring"
-              
-              elsif z.text == "AC"
-                
-              elsif z.text == "Condition Code"
-                
-              elsif z.text == "TLA"
-                
-              elsif z.text == "TLA"
-                
-              end
-            end
-          end
-          
-      end
-      
-    end
-    
   end
 
   def pdfupload
@@ -223,6 +156,10 @@ class HousesController < ApplicationController
     path = File.join(directory, name)
   # write the file
     File.open(path, "wb") { |f| f.write(pdffile.read) }
-    redirect_to root_path
+    csvparse = CsvParser.new((path),params[:county])
+    csvparse.run
+    session[:house_attributes] = csvparse.gethouse.attributes
+    File.delete(path)
+    redirect_to new_house_path
   end
 end
