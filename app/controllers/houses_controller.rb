@@ -2,7 +2,6 @@ class HousesController < ApplicationController
   require 'csvparser'
   # GET /houses
   # GET /houses.json
-  @temphouse = nil
   def index
 
     @houses = House.search(params[:search])
@@ -152,14 +151,23 @@ class HousesController < ApplicationController
     pdffile = params[:datafile]
     name =  pdffile.original_filename
     directory = "public/pdffiles" # specify yr own path in public folder
-   # create the file path
+    csvfile = "#{Rails.root}/" + directory + "/housedata.csv"
+    # create the file path
     path = File.join(directory, name)
-  # write the file
     File.open(path, "wb") { |f| f.write(pdffile.read) }
-    csvparse = CsvParser.new((path),params[:county])
+    if pdffile.content_type.include? 'pdf'
+      puts "java -jar C:\\Tabula\\tabula-0.9.1-jar-with-dependencies.jar \"#{Rails.root}/" + path+ "\" -g -p all -r -o \""+ csvfile +"\""
+      Process.wait(IO.popen("java -jar C:\\Tabula\\tabula-0.9.1-jar-with-dependencies.jar \"#{Rails.root}/" + path+ "\" -g -p all -r -o \""+ csvfile +"\"").pid )
+      File.delete(path)
+    else
+      csvfile = "#{Rails.root}/" + path
+    end
+  # write the file
+
+    csvparse = CsvParser.new((csvfile),params[:county])
     csvparse.run
     session[:house_attributes] = csvparse.gethouse.attributes
-    File.delete(path)
+    File.delete(csvfile)
     redirect_to new_house_path
   end
 end

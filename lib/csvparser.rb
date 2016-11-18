@@ -7,7 +7,7 @@ class CsvParser
   end
 
   def run()
-    @csvarr = CSV.read("#{Rails.root}/" + @csvdirectory)
+    @csvarr = CSV.read(@csvdirectory)
     @csvarr.each_with_index do |x,index |
       case x[0]
         when "Parcel Information"
@@ -18,7 +18,7 @@ class CsvParser
           @yearlytaxindex = index
         when "2015 Tax Levy"
           @taxlevyindex = index
-        when "Sales Information"
+        when "Sales Information","5 Year Sales History"
           @salesinfoindex = index
         when "Property Classification"
           @propertyclassindex = index
