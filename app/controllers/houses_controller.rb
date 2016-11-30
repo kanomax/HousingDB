@@ -167,6 +167,8 @@ class HousesController < ApplicationController
     csvparse = CsvParser.new((csvfile),params[:county])
     csvparse.run
     session[:house_attributes] = csvparse.gethouse.attributes
+    session[:sales] ||= []
+    session[:sales] = csvparse.getsales
     File.delete(csvfile)
     redirect_to new_house_path
   end

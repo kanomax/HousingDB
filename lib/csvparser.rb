@@ -82,6 +82,29 @@ class CsvParser
   end
 
   def saleinfoparser
+    saleinfoarr = @csvarr[@salesinfoindex..(@propertyclassindex - 1)]
+    @sales = Array.new
+    bookpagearr = Array.new
+    saleinfoarr.each_with_index do |x,index|
+
+      unless index == 0 or index == 1
+        sale = Sale.new
+        case @house.county
+          when "Saline"
+            sale.saledate = x[0]
+            sale.price = x[4].gsub(/[^\d\.]/, '').to_f
+            bookpagearr.push(x[1])
+          when "Fillmore"
+            sale.price = x[1]
+            sale.saledate = x[0]
+            bookpagearr.push(x[2])
+          when "Seward"
+
+        end
+        sale.build_agent
+        @sales.push(sale)
+      end
+    end
 
   end
 
@@ -434,5 +457,8 @@ class CsvParser
 
   def gethouse
     return @house
+  end
+  def getsales
+    return @sales
   end
 end

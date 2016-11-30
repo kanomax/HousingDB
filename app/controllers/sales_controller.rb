@@ -32,10 +32,19 @@ before_filter :get_house
   end
  end
  
- def new 
-@sale = Sale.new
- @sale.build_agent
+ def new
+   @sales = Array.new
    @agentname = ""
+   if session[:saleinfo]
+     @sales = session[:sales]
+
+   else
+     @count = 0
+     sale = Sale.new
+     sale.build_agent
+     @sales.push(sale)
+   end
+
  end
  
  def edit
