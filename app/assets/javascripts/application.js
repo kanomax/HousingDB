@@ -160,6 +160,20 @@ ready = function() {
             link: link
         };
     }();
-
+function toggleSale(x) {
+    toggleContent("saledateedit[" + x + "]");
+    toggleContent("saledatetext[" + x + "]");
+    toggleContent("priceedit[" + x + "]");
+    toggleContent("pricetext[" + x + "]");
+    toggleContent("editbutton[" + x + "]");
+    toggleContent("updatebutton[" + x + "]");
+}
+function toggleContent(x) {
+    // Get the DOM reference
+    var contentId = document.getElementById(x);
+    // Toggle
+    contentId.style.display === "block" ? contentId.style.display = "none" :
+        contentId.style.display = "block";
+}
 $(document).ready(ready);
 $(document).on('page:load', ready);

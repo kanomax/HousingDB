@@ -17,15 +17,15 @@ ActiveRecord::Schema.define(version: 20161130012318) do
   enable_extension "plpgsql"
 
   create_table "agents", force: :cascade do |t|
+    t.string   "name",        limit: 255
+    t.string   "companyname", limit: 255
+    t.string   "address",     limit: 255
+    t.string   "phone",       limit: 255
+    t.string   "email",       limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+    t.string   "cellphone",   limit: 255
     t.integer  "listing_id"
-    t.string   "name"
-    t.string   "companyname"
-    t.string   "address"
-    t.string   "phone"
-    t.string   "email"
-    t.string   "cellphone"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
   end
 
   add_index "agents", ["listing_id"], name: "index_agents_on_listing_id", using: :btree
@@ -43,35 +43,37 @@ ActiveRecord::Schema.define(version: 20161130012318) do
   add_index "housefiles", ["house_id"], name: "index_housefiles_on_house_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
-    t.string   "address"
-    t.string   "city"
-    t.string   "state"
+    t.string   "address",               limit: 255
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
+    t.string   "city",                  limit: 255
+    t.string   "state",                 limit: 255
     t.integer  "zipcode"
-    t.string   "county"
+    t.string   "county",                limit: 255
     t.integer  "lotsize"
     t.integer  "squarefeet"
-    t.decimal  "bedrooms",              precision: 4, scale: 2
+    t.decimal  "bedrooms",                          precision: 4, scale: 2
     t.decimal  "bathrooms"
-    t.string   "style"
+    t.string   "style",                 limit: 255
     t.integer  "year"
     t.integer  "basementsf"
     t.integer  "basementsffinish"
-    t.decimal  "basementbd",            precision: 4, scale: 2
-    t.decimal  "basementbath",          precision: 4, scale: 2
+    t.decimal  "basementbd",                        precision: 4, scale: 2
+    t.decimal  "basementbath",                      precision: 4, scale: 2
     t.text     "basementother"
-    t.string   "garagestalls"
-    t.string   "heating"
-    t.string   "cooling"
-    t.string   "siding"
+    t.string   "garagestalls",          limit: 255
+    t.string   "heating",               limit: 255
+    t.string   "cooling",               limit: 255
+    t.string   "siding",                limit: 255
     t.boolean  "replwindows"
-    t.string   "outbuilding"
-    t.decimal  "fireplaces",            precision: 4, scale: 2
-    t.decimal  "woodstoves",            precision: 4, scale: 2
-    t.string   "gencomments"
-    t.string   "status"
+    t.string   "outbuilding",           limit: 255
+    t.decimal  "fireplaces",                        precision: 4, scale: 2
+    t.decimal  "woodstoves",                        precision: 4, scale: 2
+    t.string   "gencomments",           limit: 255
+    t.string   "status",                limit: 255
     t.integer  "currentprice"
-    t.string   "condition"
-    t.string   "quality"
+    t.string   "condition",             limit: 255
+    t.string   "quality",               limit: 255
     t.boolean  "concretedrive"
     t.boolean  "sprinklers"
     t.integer  "parcel_id"
@@ -80,30 +82,28 @@ ActiveRecord::Schema.define(version: 20161130012318) do
     t.string   "houseimg_content_type"
     t.integer  "houseimg_file_size"
     t.datetime "houseimg_updated_at"
-    t.datetime "created_at",                                    null: false
-    t.datetime "updated_at",                                    null: false
   end
 
   create_table "listings", force: :cascade do |t|
+    t.string   "listingprice", limit: 255
+    t.date     "listingdate"
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
     t.integer  "house_id"
     t.integer  "agent_id"
-    t.integer  "listingprice"
-    t.date     "listingdate"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
   end
 
   create_table "sales", force: :cascade do |t|
-    t.integer  "house_id"
-    t.integer  "agent_id"
     t.integer  "price"
     t.date     "saledate"
-    t.integer  "contractprice"
-    t.string   "concession"
-    t.string   "specialterms"
+    t.date     "contractprice"
+    t.string   "concession",    limit: 255
+    t.string   "specialterms",  limit: 255
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.integer  "house_id"
+    t.integer  "agent_id"
     t.integer  "dom"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
     t.integer  "book"
     t.integer  "page"
   end

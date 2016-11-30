@@ -39,12 +39,12 @@ end
    @sales = Array.new
    @agentname = ""
    unless session[:sales].nil?
-     sales_length = session[:sales].length
-     for x in (0..(sales_length - 1))
-       @house.sales.build
-       @house.sales[x] = session[:sales][x]
-
-     end
+     # sales_length = session[:sales].length
+     # for x in (0..(sales_length - 1))
+     #   @house.sales.build
+     #   @house.sales[x] = session[:sales][x]
+     # end
+     @sales = session[:sales]
 
    else
      @count = 0
