@@ -1,0 +1,10 @@
+<%= form_for(@house) do |f| %>
+    <%= f.fields_for :sales do |sale| %>
+        <p>
+          <%= sale.text_field :saledate %><br>
+          <%= sale.text_field :price %>
+        </p>
+    <% end %>
+
+    <%= f.submit %>
+<% end %>

@@ -31,13 +31,20 @@ before_filter :get_house
     render action: "new"
   end
  end
+def create_multiple
+
+end
  
  def new
    @sales = Array.new
    @agentname = ""
    unless session[:sales].nil?
+     sales_length = session[:sales].length
+     for x in (0..(sales_length - 1))
+       @house.sales.build
+       @house.sales[x] = session[:sales][x]
 
-     @sales = session[:sales]
+     end
 
    else
      @count = 0

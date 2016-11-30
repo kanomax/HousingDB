@@ -12,12 +12,14 @@ Rails.application.routes.draw do
   resources :housefiles  
   resources :houses do
     resources :listings
-    resources :sales
+    resources :sales do
+      put 'create_multiple', on: :collection
+    end
     resources :housefiles
     get'statusupdate', on: :member
     get'addattach', on: :member
     get'editattach', on: :member
-    post :pdfupload, :on => :collection
+    post :pdfupload, on: :collection
   end
 root to: 'houses#index'
   resources :agents
