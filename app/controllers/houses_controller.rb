@@ -3,7 +3,6 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-
     @houses = House.search(params[:search])
     respond_to do |format|
       format.html # index.html.erb
@@ -167,7 +166,6 @@ class HousesController < ApplicationController
     csvparse = CsvParser.new((csvfile),params[:county])
     csvparse.run
     session[:house_attributes] = csvparse.gethouse.attributes
-    session[:sales] ||= []
     session[:sales] = csvparse.getsales
     File.delete(csvfile)
     redirect_to new_house_path

@@ -35,7 +35,7 @@ gem 'wdm', '>= 0.1.0' if Gem.win_platform?
 gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 #gem 'spring',        group: :development
-
+gem 'activerecord-session_store'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

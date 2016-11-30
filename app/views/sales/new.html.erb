@@ -1,5 +1,4 @@
 <div class="page-header"><h1 class="text-center">New Sale Information</h1></div>
-<% @sales.each do |sale| %>
-<%= render 'saleform', sale: sale %>
-<% end %>
+
+<%= render 'multiplesaleform', collection: @sales %>
 <%= link_to 'Back', :back %>

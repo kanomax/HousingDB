@@ -35,7 +35,8 @@ before_filter :get_house
  def new
    @sales = Array.new
    @agentname = ""
-   if session[:saleinfo]
+   unless session[:sales].nil?
+
      @sales = session[:sales]
 
    else

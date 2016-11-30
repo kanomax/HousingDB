@@ -31,6 +31,12 @@ GEM
       activemodel (= 4.2.0)
       activesupport (= 4.2.0)
       arel (~> 6.0)
+    activerecord-session_store (1.0.0)
+      actionpack (>= 4.0, < 5.1)
+      activerecord (>= 4.0, < 5.1)
+      multi_json (~> 1.11, >= 1.11.2)
+      rack (>= 1.5.2, < 3)
+      railties (>= 4.0, < 5.1)
     activesupport (4.2.0)
       i18n (~> 0.7)
       json (~> 1.7, >= 1.7.7)
@@ -205,6 +211,7 @@ PLATFORMS
 
 DEPENDENCIES
   StreetAddress
+  activerecord-session_store
   area
   bootstrap-sass
   bootswatch-rails
@@ -240,4 +247,4 @@ RUBY VERSION
    ruby 2.1.8p440
 
 BUNDLED WITH
-   1.12.4
+   1.12.5
