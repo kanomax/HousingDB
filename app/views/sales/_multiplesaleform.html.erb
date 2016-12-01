@@ -5,6 +5,9 @@
           <tr>
             <th>Sale Date</th>
             <th>Price</th>
+            <th>Book</th>
+            <th>Page</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
@@ -13,13 +16,19 @@
             <tr>
               <%= fields_for "sales[#{i}]", sale do |f| %>
                   <td><div id="saledatetext[<%=i%>]" style="display:block"><%= sale.saledate %></div>
-                    <div id="saledateedit[<%=i%>]" style="display:none"><%= f.text_field :saledate, :class => "form-control" %></div>
+                    <div id="saledateedit[<%=i%>]" style="display:none"><%= f.text_field :saledate, :class => "form-control input-sm" %></div>
                   </td>
-                  <td><div id="pricetext[<%=i%>]" style="display:block"><%= sale.price %></div>
-                    <div id="priceedit[<%=i%>]" style="display:none"><%= f.text_field :price, :class => "form-control" %></div>
+                  <td><div id="pricetext[<%=i%>]" style="display:block"><span><%= sale.price %></span></div>
+                    <div id="priceedit[<%=i%>]" style="display:none"><%= f.text_field :price, :class => "form-control input-sm" %></div>
                   </td>
-                  <td><div id="editbutton[<%=i%>]" style="display:block"><%= link_to "Edit", "#",onclick: "toggleSale(#{i});", :class => "btn btn-warning" %></div>
-                    <div id="updatebutton[<%=i%>]" style="display:none"><%= link_to "Update", "#",onclick: "toggleSale(#{i});", :class => "btn btn-warning" %></div>
+                  <td><div id="booktext[<%=i%>]" style="display:block"><%= sale.book %></div>
+                    <div id="bookedit[<%=i%>]" style="display:none"><%= f.text_field :book, :class => "form-control input-sm" %></div>
+                  </td>
+                  <td><div id="pagetext[<%=i%>]" style="display:block"><%= sale.page %></div>
+                    <div id="pageedit[<%=i%>]" style="display:none"><%= f.text_field :page, :class => "form-control input-sm" %></div>
+                  </td>
+                  <td><div id="editbutton[<%=i%>]" style="display:block"><%= link_to "Edit", "#",onclick: "toggleSale(#{i});", :class => "btn btn-warning btn-sm" %></div>
+                    <div id="updatebutton[<%=i%>]" style="display:none"><%= link_to "Update", "#",onclick: "toggleSale(#{i});updateSaleValues(#{i});", :class => "btn btn-warning btn-sm" %></div>
                   </td>
               <% end %>
             </tr>

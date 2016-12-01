@@ -165,15 +165,37 @@ function toggleSale(x) {
     toggleContent("saledatetext[" + x + "]");
     toggleContent("priceedit[" + x + "]");
     toggleContent("pricetext[" + x + "]");
+    toggleContent("bookedit[" + x + "]");
+    toggleContent("booktext[" + x + "]");
+    toggleContent("pageedit[" + x + "]");
+    toggleContent("pagetext[" + x + "]");
     toggleContent("editbutton[" + x + "]");
     toggleContent("updatebutton[" + x + "]");
 }
+
 function toggleContent(x) {
     // Get the DOM reference
     var contentId = document.getElementById(x);
     // Toggle
     contentId.style.display === "block" ? contentId.style.display = "none" :
         contentId.style.display = "block";
+}
+
+
+function updateSaleValues(x) {
+    $(function() {
+        var updateval = $("#sales_" + x + "_saledate").val();
+        document.getElementById("saledatetext[" + x + "]").innerHTML = updateval;
+
+        var updateval = $("#sales_" + x + "_price").val();
+        document.getElementById("pricetext[" + x + "]").innerHTML = updateval;
+
+        var updateval = $("#sales_" + x + "_book").val();
+        document.getElementById("booktext[" + x + "]").innerHTML = updateval;
+
+        var updateval = $("#sales_" + x + "_page").val();
+        document.getElementById("pagetext[" + x + "]").innerHTML = updateval;
+    });
 }
 $(document).ready(ready);
 $(document).on('page:load', ready);
