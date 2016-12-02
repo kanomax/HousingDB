@@ -1,4 +1,6 @@
-<div class="page-header"><h1 class="text-center">New Sale Information</h1></div>
-
-<%= render 'multiplesaleform', collection: @sales %>
-<%= link_to 'Back', :back %>
+<div class="page-header"><h1 class="text-center">New Sale(s) Information</h1></div>
+<% if @multiplesales %>
+    <%= render 'multiplesaleform', collection: @sales %>
+<% else %>
+    <%= render 'saleform' %>
+<% end %>

@@ -8,7 +8,7 @@ before_filter :get_house
  end
  
  def show
- @sale = @house.sales.find(params[:id])
+  @sale = @house.sales.find(params[:id])
  end
  
  def create
@@ -32,25 +32,40 @@ before_filter :get_house
   end
  end
 def create_multiple
+  @salescount = params[:sales].length
+  @salebool = true
+  params[:sales].each do |key,sale|
+    ad_params = sale.permit!
+    @sale = @house.sales.new(ad_params)
+    @sale.dom = 0
+    # @sale = sale
+    if !@sale.save
+      @salebool = false
+    end
+  end
+  if @salebool
+    flash[:notice] = 'Sales were successfully created.'
+    redirect_to house_sales_path(@house.id)
+  else
+    flash[:notice] = @sale.errors
+    redirect_to house_sales_path(@house.id)
 
+  end
 end
  
  def new
    @sales = Array.new
    @agentname = ""
-   unless session[:sales].nil?
-     # sales_length = session[:sales].length
-     # for x in (0..(sales_length - 1))
-     #   @house.sales.build
-     #   @house.sales[x] = session[:sales][x]
-     # end
-     @sales = session[:sales]
-
+   @multiplesales = false
+   @sales = Array.new
+   unless session[:sales].empty?
+     @sales = session[:sales].clone
+     @multiplesales = true
+     session[:sales].clear
    else
      @count = 0
-     sale = Sale.new
-     sale.build_agent
-     @sales.push(sale)
+     @sale = Sale.new
+     @sale.build_agent
    end
 
  end
@@ -93,10 +108,11 @@ end
   
   def destroy
     @sale = Sale.find(params[:id])
+    house_id = @sale.house.id
     @sale.destroy
 
     respond_to do |format|
-      format.html { redirect_to house_sales_path(@house) }
+      format.html { redirect_to house_sales_path(house_id) }
       format.json { head :no_content }
     end
   end

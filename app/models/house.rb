@@ -33,4 +33,25 @@ mount_uploader :houseimg, HouseUploader, :mount_on => :houseimg_file_name
       return "No Agent"
     end
   end
+  def update_status
+    first_sale = self.sales.order('saledate DESC').first
+    first_listing = self.listings.order('listingdate DESC').first
+    if first_sale == nil
+      if first_listing == nil
+        self.update_attributes(:currentprice => "", :status => 'Unknown')
+      else
+        self.update_attributes(:currentprice => first_listing.price, :status => 'Listed')
+      end
+    elsif first_listing == nil
+      if first_sale == nil
+        self.update_attributes(:currentprice => "", :status => 'Unknown')
+      else
+        self.update_attributes(:currentprice => first_sale.price, :status => 'Sold')
+      end
+    elsif first_listing.listingdate > first_sale.saledate
+      self.update_attributes(:currentprice => first_listing.price, :status => 'Listed')
+    else
+      self.update_attributes(:currentprice => first_sale.price, :status => 'Sold')
+    end
+  end
 end

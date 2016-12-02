@@ -185,7 +185,8 @@ function toggleContent(x) {
 function updateSaleValues(x) {
     $(function() {
         var updateval = $("#sales_" + x + "_saledate").val();
-        document.getElementById("saledatetext[" + x + "]").innerHTML = updateval;
+        tempdate = new Date(updateval);
+        document.getElementById("saledatetext[" + x + "]").innerHTML = tempdate.toLocaleDateString("en-US");
 
         var updateval = $("#sales_" + x + "_price").val();
         document.getElementById("pricetext[" + x + "]").innerHTML = updateval;

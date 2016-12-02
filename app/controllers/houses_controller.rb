@@ -15,7 +15,7 @@ class HousesController < ApplicationController
   def show
 
     @house = House.find(params[:id])
-
+    @house.update_status
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @house }
@@ -26,7 +26,7 @@ class HousesController < ApplicationController
   # GET /houses/new.json
   def new
     @house = House.new
-    unless session[:house_attributes].nil?
+    unless session[:house_attributes].empty?
       @house.attributes = session[:house_attributes]
       session[:house_attributes].clear
     end

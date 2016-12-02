@@ -17,7 +17,11 @@ accepts_nested_attributes_for :agent
   def update_house(house)
     if self.listingdate >= house.listings.order('listingdate DESC').first.listingdate
       if house.sales.order('saledate DESC').first == nil
-        house.update_attributes(:currentprice => self.listingprice, :status => 'Listed')
+        if house.listing.order('listingdate DESC').first == nil
+          house.update_attributes(:currentprice => self.listingprice, :status => 'Unknown')
+        else
+          house.update_attributes(:currentprice => self.listingprice, :status => 'Listed')
+        end
       elsif self.listingdate > house.sales.order('saledate DESC').first.saledate
         house.update_attributes(:currentprice => self.listingprice, :status => 'Listed')
       end

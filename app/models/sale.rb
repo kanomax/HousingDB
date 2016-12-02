@@ -8,7 +8,11 @@ belongs_to :agent
 def update_house(house)
   if self.saledate >= house.sales.order('saledate DESC').first.saledate
     if  house.listings.order('listingdate DESC').first == nil
-      house.update_attributes(:currentprice => self.price, :status => 'Sold')
+      if house.sales.order('saledate DESC').first == nil
+        house.update_attributes(:currentprice => self.price, :status => 'Unknown')
+      else
+        house.update_attributes(:currentprice => self.price, :status => 'Sold')
+      end
     elsif self.saledate >= house.listings.order('listingdate DESC').first.listingdate
       house.update_attributes(:currentprice => self.price, :status => 'Sold')
     end

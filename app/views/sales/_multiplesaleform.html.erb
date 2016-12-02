@@ -15,7 +15,7 @@
         <% for sale in @sales %>
             <tr>
               <%= fields_for "sales[#{i}]", sale do |f| %>
-                  <td><div id="saledatetext[<%=i%>]" style="display:block"><%= sale.saledate %></div>
+                  <td><div id="saledatetext[<%=i%>]" style="display:block"><%= sale.saledate.strftime("%m/%d/%Y") %></div>
                     <div id="saledateedit[<%=i%>]" style="display:none"><%= f.text_field :saledate, :class => "form-control input-sm" %></div>
                   </td>
                   <td><div id="pricetext[<%=i%>]" style="display:block"><span><%= sale.price %></span></div>
@@ -36,5 +36,5 @@
           <% end %>
         </tbody>
       </table>
-      <p><%= submit_tag "Submit" %></p>
+      <p><%= submit_tag "Submit", class: "btn btn-primary" %></p>
 <% end %>
