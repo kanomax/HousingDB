@@ -57,13 +57,13 @@ class CsvParser
               @house.city = city
               state = value[(value.length - 1)]
               @house.state = state
-              @house.zipcode = (city + ", " + state).to_zip
+              @house.zipcode = (city + ", " + state).to_zip[0]
             when "Saline"
               city = value[0].humanize
               @house.city = city
               state = "NE"
               @house.state = state
-              @house.zipcode = (city + ", " + state).to_zip
+              @house.zipcode = (city + ", " + state).to_zip[0]
           end
         when "Lot Width x Depth"
           if @house.county == "Saline"
@@ -459,10 +459,19 @@ class CsvParser
     @house.outbuilding = @house.outbuilding + tempstring
   end
 
-  def gethouse
+  def get_house
     return @house
   end
-  def getsales
+  def get_sales
     return @sales
+  end
+  def house_exists
+    house = House.where("address = ? AND zipcode = ?",@house.address,@house.zipcode).first
+    if house.nil?
+      return false
+    else
+      @house = house
+      return true
+    end
   end
 end
