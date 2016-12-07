@@ -58,7 +58,7 @@ end
    @agentname = ""
    @multiplesales = false
    @sales = Array.new
-   unless session[:sales].empty?
+   unless session[:sales].blank?
      @sales = session[:sales].clone
      @multiplesales = true
      session[:sales].clear

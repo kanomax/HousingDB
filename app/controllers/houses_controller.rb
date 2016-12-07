@@ -26,7 +26,7 @@ class HousesController < ApplicationController
   # GET /houses/new.json
   def new
     @house = House.new
-    unless session[:house_attributes].empty?
+    unless session[:house_attributes].blank?
       @house.attributes = session[:house_attributes]
       session[:house_attributes].clear
     end
